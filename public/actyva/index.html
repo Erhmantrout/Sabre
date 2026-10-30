@@ -551,7 +551,7 @@ function activity(){
 }
 function evRow(e){
   const p=S.posts[e.postId];const t=new Date(e.at).toLocaleString('en-AU',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'});
-  const what=e.kind==='status'?'moved to <b>'+esc(ST[e.to]||e.to)+'</b>':'commented';
+  const what=e.kind==='status'?'moved to <b>'+esc(ST[e.to]||e.to)+'</b>':e.kind==='edit'?'edited the caption':'commented';
   return '<div class="ev '+(e.kind==='comment'?'c':'')+'"><div class="m"><b>'+esc(nameOf(e.by))+'</b> '+what+(p?' on '+esc(p.title):'')+' · '+t+'</div>'+(e.quote?'<div class="eq">On “'+esc(e.quote)+'”</div>':'')+(e.text?'<div>'+esc(e.text)+'</div>':'')+'</div>';
 }
 function qbarHtml(){return S.quote&&S.quoteFor===S.sel?'<div class="qb">Commenting on “'+esc(S.quote.length>140?S.quote.slice(0,140)+'…':S.quote)+'” <button class="lnk" data-act="qclear">Clear</button></div>':''}
@@ -582,7 +582,7 @@ function detail(p){
    (team?'<div class="card ready"><span class="label">Metricool readiness</span><ul class="clean" style="list-style:none;padding:0;margin:8px 0 0">'+ready(p).map(r=>'<li>'+(r[1]?'<b style="color:var(--s-approved)">✓</b>':'<b style="color:var(--s-changes)">✗</b>')+' '+r[0]+'</li>').join('')+'</ul></div>':'')+
    (team?mcBlock(p):'')+
    (p.note?'<div class="brief"><q>'+esc(p.note)+'</q><small>Note from the team</small></div>':'')+
-   '<div><span class="label">Caption</span><p class="caption">'+cap+'</p><p class="muted" style="margin:6px 0 0;font-size:12px">Tip: highlight any words in the caption to comment on them.</p></div>'+
+   (S.capEdit===p.id&&!ro?'<div class="field"><label>Edit caption</label><textarea id="capEdC" rows="7">'+esc(S.capDraft!=null?S.capDraft:p.caption)+'</textarea><div class="row" style="margin-top:6px"><button class="btn pri sm" data-act="capsave">Save caption</button><button class="btn sm" data-act="capcancel">Cancel</button></div></div>':'<div><span class="label">Caption</span><p class="caption">'+cap+'</p><p class="muted" style="margin:6px 0 0;font-size:12px">Tip: highlight any words in the caption to comment on them.</p>'+(ro?'':'<div class="row" style="margin-top:6px"><button class="btn sm" data-act="capedit">Edit caption</button></div>')+'</div>')+
    (linksOf(p).length?'<div class="links"><span class="label">Original artwork</span> '+linksOf(p).map((u,i,a)=>'<a class="lnk" href="'+esc(u)+'" target="_blank" rel="noopener">'+(a.length>1?'Slide '+(i+1):'Open in Drive')+' ↗</a>').join(' · ')+'</div>':'')+
    '<div><span class="label">Comments and activity ('+ev.length+')</span><div class="th" style="margin-top:8px">'+(ev.length?ev.map(evRow).join(''):'<span class="muted">No comments yet.</span>')+'</div></div>'+
    (ro?'<div class="field"><label>Comment</label><p class="muted" style="margin:0 0 8px">Highlight words in the caption and press “Comment on this”, or comment on the whole post.</p><div class="row"><button class="btn pri sm" data-act="ncomment">Comment on this post</button></div></div></article>':'<div class="field"><label>Add a comment as '+(team?'team':'client')+'</label><div id="qbar">'+qbarHtml()+'</div><textarea id="cm" rows="2" placeholder="Write a comment…">'+esc(S.draft)+'</textarea><div class="row" style="margin-top:6px;flex-wrap:wrap;gap:6px;align-items:center"><span class="muted" style="font-size:12px">Tag (they get an email):</span>'+window.ROOM.tags.map(n=>'<button class="btn sm" data-act="mention" data-v="'+n+'">@'+n+'</button>').join('')+'</div><div class="row" style="margin-top:6px"><button class="btn pri sm" data-act="comment">Post comment</button></div></div></article>');
@@ -754,7 +754,7 @@ function addForm(){
 }
 function render(){
   if(S.orderAuto!==S.mode){S.orderAuto=S.mode;S.order=S.mode==='client'?'new':'old'}
-  const a=document.activeElement;const keep=a&&a.id&&['cm','capEd'].includes(a.id)?{id:a.id,s:a.selectionStart}:null;const sy=window.scrollY;
+  const a=document.activeElement;const keep=a&&a.id&&['cm','capEd','capEdC'].includes(a.id)?{id:a.id,s:a.selectionStart}:null;const sy=window.scrollY;
   if(S.mode==='client'&&S.tab!=='grid'&&S.tab!=='doc'){S.tab='grid';S.sel=null}
   const v={content,grid:gridTab,doc:docTab,approvals,pipeline,export:exportView,brand,activity}[S.tab]();
   $('#app').innerHTML=header()+'<main>'+v+'</main>'+(S.adding?addForm():'')+(S.importing?importForm():'')+(S.toast?'<div class="toast" role="status">'+esc(S.toast)+'</div>':'');
@@ -762,7 +762,7 @@ function render(){
 }
 
 /* ---------- events ---------- */
-document.addEventListener('input',e=>{if(e.target.id==='cm')S.draft=e.target.value});
+document.addEventListener('input',e=>{if(e.target.id==='cm')S.draft=e.target.value;if(e.target.id==='capEdC')S.capDraft=e.target.value});
 document.addEventListener('change',async e=>{
   const t=e.target,a=t.dataset&&t.dataset.act;if(!a)return;
   if(a==='filter'){S.filter=t.value;render()}
@@ -827,6 +827,9 @@ document.addEventListener('click',async e=>{
     const men=[...new Set((t.match(new RegExp('@('+window.ROOM.tags.join('|')+')\\b','gi'))||[]).map(x=>x.slice(1).toLowerCase()))];if(men.length)ev.mentions=men;if(S.quote&&S.quoteFor===S.sel)ev.quote=S.quote;const ok=await addEvent(ev);if(!ok)return;
     if(men.length){const pp=S.posts[S.sel]||{};fetch(window.ROOM.api+'notify',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({mentions:men,by:S.mode,postTitle:pp.title||'a post',text:t.trim()})}).then(r=>{if(!r.ok)throw 0;toast('Comment posted. Email sent to '+men.join(', ')+'.')}).catch(()=>toast('Comment saved, but the email could not be sent.'))}
     S.draft='';S.quote='';render();return}
+  if(a==='capedit'){S.capEdit=S.sel;S.capDraft=(S.posts[S.sel]||{}).caption||'';render();return}
+  if(a==='capcancel'){S.capEdit=null;S.capDraft=null;render();return}
+  if(a==='capsave'){const el=document.getElementById('capEdC');const p=S.posts[S.sel];if(!el||!p)return;const nv=el.value;S.capEdit=null;S.capDraft=null;if(nv===p.caption){render();return}const old=p.caption||'';await savePost(S.sel,{caption:nv},{kind:'edit',text:'Previous caption: '+(old.length>400?old.slice(0,400)+'…':old)});toast('Caption saved');return}
   if(a==='savecap'){await savePost(S.sel,{caption:document.getElementById('capEd').value},{kind:'status',to:S.posts[S.sel].status,text:'Caption edited'});toast('Caption saved');return}
   if(a==='saveurls'){const u=document.getElementById('urls').value.split(/\s*\n\s*/).map(x=>x.trim()).filter(Boolean).slice(0,10);await savePost(S.sel,{imageUrls:u});toast('URLs saved');return}
   if(a==='savedt'){const d=document.getElementById('dd').value,t=document.getElementById('tt').value;if(!d||!t)return;await savePost(S.sel,{date:d,time:t},{kind:'status',to:S.posts[S.sel].status,text:'Rescheduled to '+d+' '+t});toast('Rescheduled');return}
