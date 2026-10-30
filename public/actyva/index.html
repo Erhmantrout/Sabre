@@ -731,7 +731,7 @@ async function runImport(txt){
   const ix={date:find(h=>h.includes('date')),time:find(h=>h.includes('time')),format:find(h=>h.includes('format')||h==='type'),ch:find(h=>h.includes('channel')||h.includes('platform')),title:find(h=>h.includes('title')||h==='name'),cap:capI,links:linkI};
   if(ix.date<0||(ix.title<0&&ix.cap<0)){S.impMsg='I need a "date" column and a "caption" (or "title") column in the header row.';return render()}
   let n=0,bad=0;const stamp=Date.now().toString(36);
-  for(let i=1;i<rows.length;i++){const r=rows[i];const g=k=>ix[k]>=0?(r[ix[k]]||'').trim():'';
+  for(let i=1;i<rows.length;i++){const r=rows[i];const g=k=>k==='links'?head.map((h,i)=>i!==capI&&/artwork|url|photo|image|drive|link/.test(h)?(r[i]||''):'').join(' ').trim():(ix[k]>=0?(r[ix[k]]||'').trim():'');
     const date=normDate(g('date'));let cap=g('cap');
     let mark='';cap=cap.replace(/(^|\n)\s*(REEL|VID|VIDEO|STORY|STORIES|CAROUSEL)\s*(?=\n|$)/gi,(m0,pre,w)=>{mark=w.toLowerCase();return pre}).replace(/\n{3,}/g,'\n\n').trim();
     let title=g('title');if(!title){title=(cap.split('\n').find(x=>x.trim())||'').trim();if(title.length>70)title=title.slice(0,67).trim()+'…'}
