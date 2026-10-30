@@ -5,6 +5,6 @@
   "assets": { "directory": "./public", "binding": "ASSETS" },
   "send_email": [{ "name": "EMAIL" }],
   "d1_databases": [
-    { "binding": "DB", "database_name": "sabre-brand-rooms", "database_id": "PASTE_DATABASE_ID_HERE" }
+    { "binding": "DB", "database_name": "sabre-brand-rooms", "database_id": "e192b087-5ee2-4a8a-926f-b661c377fc64" }
   ]
 }
