@@ -1,0 +1,856 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Actyva Brand Room</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Fraunces:opsz,wght@9..144,500..700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f5dc;--surface:#fbfbef;--surface2:#e9e9cc;--ink:#0d0f08;--muted:#5f624a;--line:#d6d6b2;--accent:#4a5d23;--accent-ink:#fff;
+--s-draft:#8a8c78;--s-review:#b7791f;--s-changes:#c0392b;--s-approved:#2f8a4f;--s-scheduled:#2b5fa8;--s-published:#55574a;
+--t1:#0d0f08;--t1f:#f5f5dc;--t2:#4a5d23;--t2f:#fff;--t3:#f5f5dc;--t3f:#0d0f08;--t4:#2c3815;--t4f:#f5f5dc;--t5:#a3ad7e;--t5f:#14170d;--shadow:0 12px 40px rgba(25,30,5,.18)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1008;--surface:#171a0e;--surface2:#20250f;--ink:#f1f1dc;--muted:#a0a37f;--line:#2f3520;--accent:#a9bd6a;--accent-ink:#0e1008;
+--s-draft:#a0a37f;--s-review:#e0a53a;--s-changes:#ef6a5a;--s-approved:#6fcf7a;--s-scheduled:#6c9ee6;--s-published:#8f927a;
+--t1:#f1f1dc;--t1f:#0d0f08;--t2:#a9bd6a;--t2f:#0e1008;--t3:#262b16;--t3f:#f5f5dc;--t4:#4a5d23;--t4f:#f5f5dc;--t5:#5e6a3a;--t5f:#f5f5dc;--shadow:0 12px 40px rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1008;--surface:#171a0e;--surface2:#20250f;--ink:#f1f1dc;--muted:#a0a37f;--line:#2f3520;--accent:#a9bd6a;--accent-ink:#0e1008;
+--s-draft:#a0a37f;--s-review:#e0a53a;--s-changes:#ef6a5a;--s-approved:#6fcf7a;--s-scheduled:#6c9ee6;--s-published:#8f927a;
+--t1:#f1f1dc;--t1f:#0d0f08;--t2:#a9bd6a;--t2f:#0e1008;--t3:#262b16;--t3f:#f5f5dc;--t4:#4a5d23;--t4f:#f5f5dc;--t5:#5e6a3a;--t5f:#f5f5dc;--shadow:0 12px 40px rgba(0,0,0,.6);color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 14px/1.5 Archivo,"Helvetica Neue",Arial,sans-serif;padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1180px;margin:0 auto}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.top{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;padding:28px 0 16px;border-bottom:2px solid var(--ink)}
+.brand{min-width:0}
+.eyebrow{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{margin:4px 0 0;font:600 clamp(30px,5.4vw,50px)/1 Fraunces,Georgia,serif;letter-spacing:-.02em;text-wrap:balance}
+h1 span{color:var(--accent)}
+.who{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--ink);border-radius:999px;overflow:hidden}
+.seg button{border:0;background:transparent;padding:6px 14px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.chip{font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
+.chip.live{color:var(--s-approved);border-color:var(--s-approved)}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--line);margin-bottom:20px;scrollbar-width:none}
+nav.tabs button{border:0;background:none;padding:12px 14px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent)}
+nav.tabs .n{display:inline-block;min-width:18px;margin-left:6px;padding:0 5px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-size:10px;text-align:center}
+.bar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
+.bar .grp{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid var(--ink);background:transparent;padding:7px 14px;border-radius:4px;font-weight:600;font-size:12.5px}
+.btn:hover{background:var(--surface2)}
+.btn.pri{background:var(--ink);color:var(--bg)}
+.btn.acc{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ok{background:var(--s-approved);border-color:var(--s-approved);color:#fff}
+.btn.bad{border-color:var(--s-changes);color:var(--s-changes)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.sm{padding:4px 10px;font-size:12px}
+h2{font:600 24px/1.1 Fraunces,Georgia,serif;letter-spacing:-.01em;margin:0}
+h3{font:700 12px/1.2 Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.cal .dh{padding:6px 8px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface2)}
+.cal .d{min-height:104px;padding:4px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0;display:flex;flex-direction:column;gap:3px}
+.cal .d.out{background:var(--bg);opacity:.55}
+.cal .d.today .dn{background:var(--accent);color:var(--accent-ink)}
+.dn{font-size:11px;font-weight:700;width:22px;height:22px;display:grid;place-items:center;border-radius:50%}
+.pill{display:flex;gap:5px;align-items:center;width:100%;text-align:left;border:0;border-left:3px solid var(--sc,var(--line));background:var(--surface2);padding:3px 5px;font-size:11px;line-height:1.25;min-width:0;border-radius:2px}
+.pill:hover{outline:1px solid var(--ink)}
+.pill span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.pill b{font-weight:700;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);flex:none}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;max-width:560px;margin:0 auto}
+.cell{position:relative;aspect-ratio:4/5;border:0;padding:0;background:var(--surface2);overflow:hidden}
+.cell .badge{position:absolute;left:6px;bottom:6px}
+.cell .fmt{position:absolute;right:6px;top:6px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.6);color:#fff;padding:1px 6px;border-radius:2px}
+.cell:hover{outline:2px solid var(--accent);outline-offset:-2px}
+.phone{max-width:560px;margin:0 auto 12px;display:flex;align-items:center;gap:12px;padding:10px 0}
+.avatar{width:54px;height:54px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:800 13px Archivo;font-stretch:120%;letter-spacing:.04em;flex:none}
+.tile{width:100%;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:12px;background:var(--tb);color:var(--tf);position:relative;overflow:hidden;text-align:left}
+.tile .mk{font:800 9px Archivo;font-stretch:125%;letter-spacing:.2em;text-transform:uppercase;opacity:.8}
+.tile .tt{font:800 clamp(12px,2.1vw,17px)/1.02 Archivo;font-stretch:105%;text-transform:uppercase;letter-spacing:-.01em;text-wrap:balance;overflow:hidden;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical}
+.tile .ft{font-size:9px;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.tile::after{content:"";position:absolute;right:-30%;top:-18%;width:70%;aspect-ratio:1;border:1px solid currentColor;opacity:.22;border-radius:50%}
+.cell img,.art img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--surface);color:var(--sc);border:1px solid var(--sc)}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--sc)}
+table.list{width:100%;border-collapse:collapse;background:var(--surface)}
+table.list th{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:2px solid var(--ink)}
+table.list td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+table.list tr.r{cursor:pointer}
+table.list tr.r:hover{background:var(--surface2)}
+.tw{overflow-x:auto}
+.card{background:var(--surface);border:1px solid var(--line);padding:16px;border-radius:4px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;align-items:start}
+.kc{background:var(--surface2);padding:10px;border-radius:4px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.kc .hd{display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.kcard{background:var(--surface);border:0;border-top:3px solid var(--sc);text-align:left;padding:8px 10px;min-width:0}
+.kcard small{display:block;color:var(--muted)}
+.muted{color:var(--muted)}
+.empty{padding:36px 16px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:4px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:flex;justify-content:center;align-items:flex-start;overflow-y:auto;padding:max(16px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) 24px max(12px,env(safe-area-inset-left,0px))}
+.dlg{background:var(--bg);width:100%;max-width:980px;margin:auto;box-shadow:var(--shadow);border-radius:6px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+@media(max-width:760px){.dlg{grid-template-columns:minmax(0,1fr)}.cal .d{min-height:64px}.pill b{display:none}.cal .dh{padding:4px 2px;text-align:center;font-size:9px;letter-spacing:.04em}.pill{padding:2px 3px;font-size:10px}}
+.art{aspect-ratio:4/5;background:var(--surface2);position:relative}
+.dots{display:flex;gap:6px;justify-content:center;padding:8px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--accent)}
+.side{padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.field label{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:var(--surface);padding:8px 10px;border-radius:4px}
+textarea{resize:vertical;min-height:70px}
+.cap{white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);padding:12px;border-radius:4px;max-height:240px;overflow:auto}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.th{display:flex;flex-direction:column;gap:8px;max-height:260px;overflow:auto}
+.ev{padding:8px 10px;background:var(--surface);border-left:3px solid var(--line);border-radius:2px}
+.ev.c{border-left-color:var(--accent)}
+.ev .m{font-size:11px;color:var(--muted)}
+.close{position:absolute;right:10px;top:10px;z-index:3;border:0;background:var(--ink);color:var(--bg);width:30px;height:30px;border-radius:50%;font-size:16px;line-height:1}
+.dlgwrap{position:relative;width:100%;max-width:980px;margin:auto}
+.toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:4px;z-index:80;max-width:90vw}
+.sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.sw div{height:84px;padding:8px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:flex-end}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+ul.clean{margin:0;padding-left:18px}
+ul.clean li{margin:4px 0}
+.warn{background:color-mix(in srgb,var(--s-review) 14%,var(--surface));border:1px solid var(--s-review);padding:10px 12px;border-radius:4px;font-size:13px}
+a{color:var(--accent)}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:4px;background:var(--sc);vertical-align:-1px}
+
+.subnav{display:flex;gap:22px;border-bottom:1px solid var(--line);margin-bottom:24px;overflow-x:auto}
+.sub{flex:none;background:none;border:0;border-bottom:2px solid transparent;padding:10px 0;margin-bottom:-1px;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:600;color:var(--muted)}
+.sub[aria-pressed=true]{border-color:var(--accent);color:var(--ink)}
+.cal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.mh{font:600 32px/1 Fraunces,Georgia,serif;letter-spacing:-.01em;color:var(--ink);margin:0}
+.cal-head p{margin:6px 0 0;font-size:12px;color:var(--muted)}
+.mnav{display:flex;gap:6px}
+.cal{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.dow{padding:9px 10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted);border-bottom:1px solid var(--ink)}
+.day{min-height:108px;padding:6px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;align-content:start;gap:4px;min-width:0}
+.cal>:nth-child(7n){border-right:0}
+.day.out{background:var(--bg)}
+.dn{font-size:11px;color:var(--muted);padding:2px 3px}
+.day.today .dn{color:var(--accent);font-weight:700}
+.pchip{display:grid;grid-template-columns:16px minmax(0,1fr) 7px;gap:6px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:3px 5px;font-size:11px;min-width:0}
+.pchip:hover,.pchip[aria-current=true]{border-color:var(--accent)}
+.pchip[aria-current=true]{box-shadow:inset 0 0 0 1px var(--accent)}
+.pchip i,.ag i{display:block;width:16px;height:20px;border-radius:3px}
+.pchip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex:none}
+.legend{margin-top:10px}
+.agenda{display:none;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.ag{display:grid;grid-template-columns:62px 16px minmax(0,1fr) 7px;gap:10px;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:11px 14px;font-size:13px}
+.ag[aria-current=true]{background:var(--surface2)}
+.ag small{display:block;color:var(--muted);font-size:11px}
+.ag .d{font-size:11px;color:var(--muted)}
+.social-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;margin-top:30px;align-items:start}
+.igwrap{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:14px}
+.igprof{display:flex;align-items:center;gap:12px}
+.igav{width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--ink);color:var(--bg);font:800 11px Archivo;font-stretch:120%;letter-spacing:.04em}
+.igprof small{display:block;font-size:11px;color:var(--muted)}
+.iggrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px}
+.tile{position:relative;aspect-ratio:4/5;max-width:100%;border:0;padding:0;overflow:hidden;background:var(--bg)}
+.tile[aria-current=true]{outline:2px solid var(--accent);outline-offset:-2px;z-index:1}
+.tile .plan{position:absolute;left:5px;top:5px;z-index:2;display:inline-flex;gap:4px;align-items:center;background:rgba(255,253,249,.92);color:#1f1a17;border-radius:999px;padding:2px 7px 2px 5px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.tile img,.pd-visual img,.av img{width:100%;height:100%;object-fit:cover;display:block}
+.art2{container-type:inline-size;position:relative;width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:3%;padding:9%;overflow:hidden;text-align:left}
+.art2 .k{font-size:4.4cqw;letter-spacing:.2em;text-transform:uppercase;font-weight:600;opacity:.85;position:relative}
+.art2 .h{overflow-wrap:anywhere;font:800 11cqw/1 Archivo,sans-serif;font-stretch:105%;text-transform:uppercase;letter-spacing:-.01em;position:relative;text-wrap:balance}
+.art2 .motif{position:absolute;left:0;top:0;width:100%;height:68%;fill:none;stroke:currentColor;stroke-width:.7;opacity:.4}
+.art2 .fmt{position:absolute;right:6%;top:6%;width:9cqw;height:9cqw;fill:none;stroke:currentColor;stroke-width:1.8}
+.art2 .fmt.play{fill:currentColor;stroke:none}
+.post-detail{background:var(--surface);border:1px solid var(--ink);border-radius:16px;padding:20px;display:grid;gap:16px;min-width:0}
+.pd-top{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:18px;align-items:start}
+.pd-visual{aspect-ratio:4/5;max-width:100%;border-radius:10px;overflow:hidden}
+.pd-top h3{font:700 18px/1.3 Archivo,sans-serif;letter-spacing:0;text-transform:none;color:var(--ink);margin:8px 0}
+.pd-info{display:grid;gap:12px;min-width:0}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0;font-size:13px}
+.dl dt{color:var(--muted)}.dl dd{margin:0}
+.label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.caption{white-space:pre-wrap;background:var(--bg);border-radius:10px;padding:14px;font-size:14px;margin:8px 0 0}
+.caption .hl{color:var(--accent)}
+.brief{border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:4px}
+.brief q{font-style:italic;font-size:16px;line-height:1.35}
+.brief small{font-size:11px;color:var(--muted);letter-spacing:.06em}
+.lnk{font-size:13px}
+.tools{display:grid;gap:12px}
+.arch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.acard{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;padding:0;text-align:left;display:grid}
+.acard[aria-current=true]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.acard .av{aspect-ratio:4/5}
+.acard .i{padding:9px 11px;display:grid;gap:2px;font-size:12px}
+.acard .i b{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acard .i span{color:var(--muted)}
+.card{border-radius:14px}
+.btn{border-radius:8px}
+@media(max-width:900px){.social-main{grid-template-columns:1fr}}
+@media(max-width:700px){.cal{display:none}.agenda{display:block}}
+@media(max-width:640px){.pd-top{grid-template-columns:1fr}.pd-visual{max-width:260px}}
+.noart{width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:4%;padding:9%;background:var(--surface2);border:1px dashed var(--line);color:var(--ink);container-type:inline-size;overflow:hidden;text-align:left}
+.noart .k{font-size:4.4cqw;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.noart .h{font:700 8cqw/1.1 Archivo,sans-serif;overflow-wrap:anywhere}
+.noart .u{font-size:4.4cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.cnt{position:absolute;right:6px;top:6px;background:rgba(13,15,8,.65);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:999px}
+.tile,.pd-visual,.av{position:relative}
+.fbonly{position:absolute;right:5px;bottom:5px;z-index:2;background:#1f3a8a;color:#fff;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 6px;border-radius:999px}
+.stl{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}.stl select{border:1px solid var(--ink);background:var(--surface);padding:6px 8px;border-radius:8px;text-transform:none;letter-spacing:0;font-weight:600}
+.ready li{margin:3px 0;font-size:13px}
+.chipb{border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600}.chipb[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.thr{display:flex;gap:6px;flex-wrap:wrap;max-width:420px}
+.th1{width:74px;aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--surface2)}
+.th1 img{width:100%;height:100%;object-fit:cover;display:block}
+.th1.empty1{display:grid;place-items:center;border:1px dashed var(--line);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;line-height:1.3}
+table.doc td{padding:14px 10px}table.doc td.dc{white-space:nowrap;width:110px;font-size:13px}table.doc td.ph{width:410px}
+table.doc tr.cur{background:var(--surface2)}
+.docname{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+table.doc select{border:1px solid var(--ink);background:var(--surface);padding:5px 8px;border-radius:8px;font-weight:600}
+@media(max-width:900px){table.doc td.ph{width:240px}.th1{width:56px}}
+.qm{background:color-mix(in srgb,var(--accent) 22%,transparent);border-radius:3px;padding:0 1px}.eq{font-size:12px;color:var(--muted);border-left:2px solid var(--accent);padding-left:8px;margin:4px 0;white-space:pre-wrap}.qb{font-size:12.5px;background:var(--surface2);border-radius:8px;padding:6px 10px;margin-bottom:6px}.qfloat{position:absolute;z-index:60;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:7px 14px;font:600 12px Archivo,sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+</style>
+<style>.sabre-back{position:fixed;left:10px;top:8px;z-index:30;font:600 11px/1 sans-serif;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--accent-text,#333);background:var(--surface,#fff);border:1px solid var(--line,#ccc);padding:6px 10px;border-radius:999px;opacity:.9}@media(max-width:700px){.sabre-back{position:static;display:inline-block;margin:8px 0 0}}</style><a class="sabre-back" href="/">← Sabre hub</a>
+<div class="wrap" id="app"></div>
+<script>
+/* Saves to the Sabre Worker (/api/<room>/...) instead of the Claude artifact runtime. */
+(function(){
+  var seg=((location.pathname.split('/')[1]||'hub').toLowerCase().replace(/[^a-z0-9-]/g,''))||'hub';
+  window.ROOM={brand:seg,api:'/api/'+seg+'/',tags:['Ade','Hayley','Stasa']};
+  try{if(/[?&]client\b/.test(location.search))localStorage.setItem('apm-room-mode','client')}catch(e){}
+  async function api(path,opts){
+    const url=path==='assets'?'/api/assets':window.ROOM.api+path;
+    const r=await fetch(url,Object.assign({headers:{'content-type':'application/json'}},opts||{}));
+    if(!r.ok)throw new Error('Save failed ('+r.status+')');
+    return r.json();
+  }
+  function coll(name,order,lim){
+    return {
+      orderBy(){return coll(name,true,lim)},
+      limit(n){return coll(name,order,n)},
+      doc(id){return{
+        set(data){return api(name+'/'+encodeURIComponent(id),{method:'PUT',body:JSON.stringify(data)})},
+        delete(){return api(name+'/'+encodeURIComponent(id),{method:'DELETE'})}
+      }},
+      onSnapshot(ok,bad){
+        let last='',stop=false;
+        async function tick(){
+          if(stop)return;
+          try{
+            const rows=await api(name+(lim?'?limit='+lim:''));
+            const s=JSON.stringify(rows);
+            if(s!==last){last=s;ok({docs:rows.map(r=>({id:r.id,data:()=>r.data}))})}
+          }catch(e){if(!last&&bad){bad(e)}}
+          setTimeout(tick,5000);
+        }
+        tick();return function(){stop=true};
+      }
+    };
+  }
+  const db={collection:function(n){return coll(n)}};
+  const user={me:async()=>({id:'browser'}),canEdit:()=>true,can:()=>true,profiles:async()=>({})};
+  async function shrink(file){
+    const url=URL.createObjectURL(file);
+    const img=await new Promise((ok,bad)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=bad;i.src=url});
+    const sc=Math.min(1,1350/Math.max(img.width,img.height));
+    const c=document.createElement('canvas');c.width=Math.round(img.width*sc);c.height=Math.round(img.height*sc);
+    const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(img,0,0,c.width,c.height);
+    URL.revokeObjectURL(url);
+    let q=0.85,d=c.toDataURL('image/jpeg',q);
+    while(d.length>1100000&&q>0.4){q-=0.1;d=c.toDataURL('image/jpeg',q)}
+    return d.split(',')[1];
+  }
+  const assets={upload:async function(file){
+    const data=await shrink(file);
+    const r=await api('assets',{method:'POST',body:JSON.stringify({data,type:'image/jpeg'})});
+    return {id:r.id};
+  }};
+  const dl={save:async function(o){
+    const b=new Blob([o.data],{type:'text/csv'});const a=document.createElement('a');
+    a.href=URL.createObjectURL(b);a.download=o.filename;document.body.appendChild(a);a.click();a.remove();
+  }};
+  window.claude={use:async function(k){
+    if(k==='db')return db;if(k==='user')return user;if(k==='downloads')return dl;if(k==='assets')return assets;
+    throw new Error('not available');
+  }};
+})();
+</script>
+<script>
+(function(){
+const DEMO=/*POSTS*/[];
+const ST={draft:'Pending',review:'Pending',changes:'Changes requested',approved:'Approved',scheduled:'Scheduled',published:'Published'};
+const ORDER=['draft','review','changes','approved','scheduled','published'];
+const TORD=['draft','changes','approved','scheduled','published'];
+const isSel=(p,s)=>p.status===s||(s==='draft'&&p.status==='review');
+const TILE=['t1','t2','t3','t4','t5'];
+const FMT={Static:0,Carousel:1,Reel:3,Story:4,TikTok:2};
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DOW=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const TODAY=ymd(new Date());
+const S={posts:{},events:[],tab:'content',view:'calendar',month:null,sel:null,mode:'team',live:false,db:null,assets:null,dl:null,user:null,me:null,names:{},slide:0,filter:'all',draft:'',adding:false,exp:{from:TODAY,to:'2026-12-31',st:{approved:true,scheduled:true}},toast:'',canWrite:true};
+try{const m=localStorage.getItem('actyva-room-mode');if(m)S.mode=m}catch(e){}
+S.month=TODAY.slice(0,7);S.cf='all';S.ed=true;S.sub='calendar';S.tools=false;
+
+/* ---------- data layer ---------- */
+const sortPosts=()=>Object.values(S.posts).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+function toast(t){S.toast=t;render();clearTimeout(toast.t);toast.t=setTimeout(()=>{S.toast='';render()},3200)}
+async function savePost(id,patch,evt){
+  const p=Object.assign({},S.posts[id],patch);S.posts[id]=p;
+  if(S.live){try{await S.db.collection('posts').doc(id).set(p)}catch(e){if(!S.ed){S.canWrite=false}toast('Could not save: '+(e&&e.message||e.code||'refused'));return false}}
+  if(evt)await addEvent(Object.assign({postId:id},evt));
+  render();return true;
+}
+function actKey(){return 'apm-act-seen-'+S.mode}
+function actNew(){
+  let seen=0;try{seen=+localStorage.getItem(actKey())||0}catch(e){}
+  const mx=S.events.reduce((m,e)=>Math.max(m,e.at||0),0);
+  if(S.tab==='activity'){try{localStorage.setItem(actKey(),String(mx))}catch(e){}return 0}
+  if(!seen&&S.events.length){try{localStorage.setItem(actKey(),String(mx))}catch(e){}return 0}
+  return S.events.filter(e=>(e.at||0)>seen&&e.by!==S.mode).length
+}
+
+async function runSeeds(){
+  if(S.seeded||!S.live)return;S.seeded=true;
+  try{
+    const idx=await (await fetch('/seed/index.json',{cache:'no-store'})).json();
+    const done=new Set((await (await fetch(window.ROOM.api+'meta',{cache:'no-store'})).json()).map(r=>r.id));
+    for(const name of idx){
+      if(done.has('seed-'+name))continue;
+      const posts=await (await fetch('/seed/'+name+'.json',{cache:'no-store'})).json();
+      let n=0;
+      for(const p of posts){if(S.posts[p.id])continue;await savePost(p.id,p,{kind:'status',to:p.status,text:'Imported'});n++}
+      await fetch(window.ROOM.api+'meta/'+encodeURIComponent('seed-'+name),{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify({at:Date.now(),n})});
+      if(n)toast('Added '+n+' new post'+(n===1?'':'s')+' from '+name+'.')
+    }
+  }catch(e){}
+}
+async function addEvent(e){
+  const ev=Object.assign({at:Date.now(),by:S.mode},e);
+  const id='e'+ev.at+Math.random().toString(36).slice(2,6);
+  if(S.live){try{await S.db.collection('events').doc(id).set(ev)}catch(x){if(!S.ed)S.canWrite=false;toast('Not saved. This usually means you have view-only access. Ask the team to invite you as a Contributor. ('+(x&&(x.code||x.message)||'refused')+')');return false}}
+  else{ev.id=id;S.events.unshift(ev)}
+  return true
+}
+function nameOf(id){if(id==='team')return 'Six Underground';if(id==='client')return 'Client';if(!id||id==='demo')return S.mode==='client'?'Client':'Six Underground';if(S.me&&id===S.me.id)return 'You';return S.names[id]||'Someone'}
+async function resolveNames(){
+  if(!S.user||!S.live)return;
+  const ids=[...new Set(S.events.map(e=>e.by).filter(Boolean))].filter(i=>!(i in S.names));
+  if(!ids.length)return;
+  try{const ps=await S.user.profiles(ids.slice(0,64));ids.forEach(i=>{S.names[i]=(ps[i]&&ps[i].name)||''});render()}catch(e){}
+}
+async function boot(){
+  render();
+  try{
+    const claude=window.claude;if(!claude||!claude.use)throw 0;
+    const [db,user,dl,assets,mcp,cmn]=await Promise.all([claude.use('db').catch(()=>null),claude.use('user').catch(()=>null),claude.use('downloads').catch(()=>null),claude.use('assets').catch(()=>null),claude.use('mcp').catch(()=>null),claude.use('comments').catch(()=>null)]);
+    S.cm=cmn;S.mcp=mcp;S.user=user;S.dl=dl;S.assets=assets;
+    if(user){try{S.me=await user.me()}catch(e){}
+      try{const can=user.can&&user.can('data.write');S.canWrite=can!==false}catch(e){}
+      let ed=false;try{ed=user.canEdit()}catch(e){}
+      S.ed=ed;if(!ed)S.mode='client';else if(!localStorage.getItem('actyva-room-mode'))S.mode='team'}
+    if(db){
+      S.db=db;S.live=true;
+      if(!S.ed&&S.me&&S.me.id){db.collection('data/users/'+S.me.id).doc('probe').set({at:Date.now()}).then(()=>{S.canWrite=true;render()}).catch(()=>{S.canWrite=false;render()})}
+      db.collection('posts').onSnapshot(sn=>{const o={};sn.docs.forEach(d=>{o[d.id]=d.data()});S.posts=o;S.loaded=true;render()},e=>{S.live=false;S.posts=demoMap();render()});
+      db.collection('events').orderBy('at','desc').limit(400).onSnapshot(sn=>{S.events=sn.docs.map(d=>Object.assign({id:d.id},d.data()));resolveNames();render()},()=>{});
+      if(false)setTimeout(runSeeds,3500);
+    }else{S.posts=demoMap();render()}
+  }catch(e){S.posts=demoMap();render()}
+}
+function demoMap(){const o={};DEMO.forEach(p=>{o[p.id]=Object.assign({},p)});return o}
+S.posts=demoMap();
+
+/* ---------- helpers ---------- */
+const PAL=[['#0d0f08','#000000','#f5f5dc'],['#4a5d23','#2a3612','#ffffff'],['#f5f5dc','#dcdcb2','#14170d'],['#2c3815','#161d09','#f5f5dc'],['#a3ad7e','#6f7a4a','#14170d'],['#e6dcb0','#b8a864','#241f07'],['#faf9ee','#d9d8b8','#14170d']];
+const MOTIF=['<path d="M22 100V52a28 28 0 0 1 56 0v48"/><path d="M32 100V54a18 18 0 0 1 36 0v46"/>','<circle cx="64" cy="40" r="26"/><circle cx="64" cy="40" r="16"/>','<path d="M0 20h100M0 32h100M0 44h100M0 56h100M0 68h100"/>','<path d="M0 90L90 0M10 100L100 10M30 100L100 30"/>','<path d="M10 70h80M10 50h60M10 30h40"/><circle cx="78" cy="30" r="10"/>'];
+const hash=s=>{let h=0;for(const c of String(s))h=(h*31+c.charCodeAt(0))>>>0;return h};
+const palOf=p=>PAL[(hash(p.id)+(p.format==='Reel'?1:0))%PAL.length];
+const sw=p=>{const c=palOf(p);return 'linear-gradient(160deg,'+c[0]+','+c[1]+')'};
+const artSrc=id=>/^(https?:)?\/\//.test(id)||id[0]==='/'?id:'/_blob/'+id;
+function tile(p,big){
+  const ids=p.assetIds||[];
+  if(ids.length){const i=big?Math.min(S.slide,ids.length-1):0;const cnt=ids.length>1?'<span class="cnt">'+(big?(i+1)+'/':'')+ids.length+'</span>':'';return '<img alt="'+esc(p.title)+'" src="'+esc(artSrc(ids[i]))+'">'+cnt}
+  if(S.noart!==false)return '<div class="noart"><span class="k">'+esc(p.format)+(p.slides>1?' · '+p.slides+' slides':'')+'</span><span class="h">'+esc(p.title.length>60?p.title.slice(0,58)+'…':p.title)+'</span><span class="u">Artwork to come</span></div>';
+  const c=palOf(p);const m=MOTIF[hash(p.id+'m')%MOTIF.length];
+  const icon=p.format==='Carousel'?'<svg class="fmt" viewBox="0 0 24 24"><rect x="7" y="3" width="13" height="15" rx="2"/><path d="M4 7v12a2 2 0 0 0 2 2h10"/></svg>':p.format==='Reel'?'<svg class="fmt play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg>':'';
+  const n=p.slides||1;const k=(big&&n>1?(Math.min(S.slide,n-1)+1)+'/'+n+' · ':'')+p.format;
+  return '<div class="art2" style="background:linear-gradient(160deg,'+c[0]+','+c[1]+');color:'+c[2]+'"><svg class="motif" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'+m+'</svg>'+icon+'<span class="k">ACTYVA · '+esc(k)+'</span><span class="h">'+esc(p.title.length>46?p.title.slice(0,44)+'…':p.title)+'</span></div>';
+}
+const badge=s=>'<span class="badge" style="--sc:var(--s-'+s+')">'+ST[s]+'</span>';
+function fmtDate(d){const x=new Date(d+'T12:00:00');return x.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short'})}
+function fmtTime(t){const[h,m]=t.split(':').map(Number);return(h%12||12)+':'+String(m).padStart(2,'0')+(h<12?' am':' pm')}
+function plats(p){return p.platforms.map(x=>x==='instagram'?'IG':x==='facebook'?'FB':x==='tiktok'?'TT':x).join(' + ')}
+const linksOf=p=>[].concat(p.driveUrls||[],p.driveUrl||[]).join(' ').split(/[\s,]+/).filter(x=>/^https?:\/\//.test(x)).filter((x,i,a)=>a.indexOf(x)===i);
+const mediaOf=p=>(p.imageUrls&&p.imageUrls.length)?p.imageUrls:linksOf(p);
+function ready(p){const m=mediaOf(p);const n=Math.max(p.slides||1,(p.assetIds||[]).length,m.length);const when=new Date(p.date+'T'+p.time+':00');
+  return [['Approved',['approved','scheduled'].includes(p.status)],['Caption written',!!(p.caption||'').trim()],['Channel chosen',p.platforms.length>0],['Artwork link for every slide ('+m.length+' of '+n+')',m.length>=n&&m.length>0],['Scheduled date still in the future',when>new Date()]]}
+const MC={server:'Metricool_Social_Media_Management',blog:'6990130',label:'Actyva Australia.Nz',tz:'Australia/Sydney'};
+function sydIso(d,t){const want=d+'T'+t+':00';const f=new Intl.DateTimeFormat('en-CA',{timeZone:MC.tz,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  for(const off of [11,10]){const inst=Date.parse(want+'Z')-off*3600000;const q={};f.formatToParts(new Date(inst)).forEach(x=>q[x.type]=x.value);if(q.year+'-'+q.month+'-'+q.day+'T'+q.hour+':'+q.minute+':'+q.second===want)return want+'+'+String(off).padStart(2,'0')+':00'}
+  return want+'+11:00'}
+function mcBlock(p){
+  if(!S.mcp)return '<div class="card"><span class="label">Metricool</span><p class="muted" style="margin:6px 0 0">Sending to Metricool works when this page is opened inside Claude by someone who has Metricool connected.</p></div>';
+  if(p.metricool){const m=p.metricool;return '<div class="card"><span class="label">Metricool</span><p style="margin:6px 0 0"><b style="color:var(--s-approved)">✓ Sent as '+(m.draft?'a draft':'scheduled')+'</b> to '+esc(MC.label)+' · '+new Date(m.at).toLocaleString('en-AU',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'})+(m.url?' · <a href="'+esc(m.url)+'" target="_blank" rel="noopener">Open in Metricool ↗</a>':'')+'</p></div>'}
+  const rd=ready(p);const ok=rd.slice(1).every(r=>r[1]);const appr=rd[0][1];const okd=[1,2,4].every(i=>rd[i][1]);
+  const confirm=S.cmc===p.id;
+  return '<div class="card"><span class="label">Send to Metricool · '+esc(MC.label)+'</span><p class="muted" style="margin:6px 0 10px">'+(appr?(ok?'Ready. '+fmtDate(p.date)+' '+fmtTime(p.time)+' Sydney time, '+plats(p)+', '+mediaOf(p).length+' media link'+(mediaOf(p).length>1?'s':'')+'.':okd?'No artwork linked yet. You can send a draft and add the pictures inside Metricool. Scheduling needs the artwork linked.':'Fix the red items above first.'):'Set the status to Approved first.')+'</p><div class="row"><button class="btn" data-act="mc"'+(appr&&okd&&!S.pushing?'':' disabled')+'>Send as draft</button><button class="btn '+(confirm?'bad':'pri')+'" data-act="mcs"'+(appr&&ok&&!S.pushing?'':' disabled')+'>'+(confirm?'Confirm: schedule to publish':'Schedule to publish')+'</button>'+(confirm?'<button class="btn sm" data-act="mcx">Cancel</button>':'')+'</div>'+(confirm?'<p class="muted" style="margin:8px 0 0">This will publish to the live Actyva accounts at the time above.</p>':'')+'</div>'}
+async function mcPush(p,draft){
+  S.pushing=true;S.cmc=null;render();
+  const t=p.platforms.map(n=>({network:n}));const info={autoPublish:true,descendants:[],draft:!!draft,firstCommentText:'',hasNotReadNotes:false,media:mediaOf(p),mediaAltText:[],providers:t,publicationDate:{dateTime:p.date+'T'+p.time+':00',timezone:MC.tz},shortener:false,smartLinkData:{ids:[]},text:p.caption};
+  if(p.platforms.includes('facebook'))info.facebookData={type:'POST'};
+  if(p.platforms.includes('instagram'))info.instagramData={type:p.format==='Reel'?'REEL':p.format==='Story'?'STORY':'POST'};
+  try{
+    const r=await S.mcp.callTool(MC.server,'createScheduledPost',{blogId:MC.blog,date:sydIso(p.date,p.time),info:JSON.stringify(info)});
+    const raw=JSON.stringify(r.payload||r.content||'');const m=raw.match(/https:\/\/[^"\\]*metricool[^"\\]*/i);
+    await savePost(p.id,{metricool:{draft:!!draft,at:Date.now(),url:m?m[0]:''},status:draft?p.status:'scheduled'},{kind:'status',to:draft?p.status:'scheduled',text:draft?'Sent to Metricool as a draft':'Scheduled in Metricool'});
+    toast((draft?'Sent to Metricool as a draft':'Scheduled in Metricool')+'. Send the Slack update from the Approvals tab.');
+  }catch(e){toast('Metricool: '+((e&&e.message)||(e&&e.code)||'could not send'))}
+  S.pushing=false;render();
+}
+const isTeam=()=>S.mode==='team';
+const need=()=>sortPosts().filter(p=>p.status==='review');
+
+/* ---------- views ---------- */
+function header(){
+  const n=need().length;const cl=S.mode==='client';
+  const seg=S.ed?'<div class="seg" role="group" aria-label="View as"><button data-act="mode" data-v="team" aria-pressed="'+(S.mode==='team')+'">Team</button><button data-act="mode" data-v="client" aria-pressed="'+(S.mode==='client')+'">Client</button></div>':'';
+  return '<header class="top"><div class="brand"><div class="eyebrow">Six Underground × Actyva · Australia and NZ</div><h1>Actyva <span>Brand Room</span></h1></div>'+
+  '<div class="who">'+(cl?'':'<span class="chip '+(S.live?'live':'')+'">'+(S.live?'Live · shared':'Preview · changes stay on this screen')+'</span>')+seg+'</div></header>'+
+  (cl?'<nav class="tabs" role="tablist">'+[['grid','Grid'],['doc','Content calendar']].map(t=>'<button role="tab" data-act="tab" data-v="'+t[0]+'" aria-selected="'+(S.tab===t[0])+'">'+t[1]+'</button>').join('')+'</nav>':'<nav class="tabs" role="tablist">'+[['content','Month view'],['grid','Grid preview'],['doc','Content calendar'],['approvals','Approvals'],['pipeline','Pipeline'],['export','Metricool export'],['brand','Brand book'],['activity','Activity']].map(t=>'<button role="tab" data-act="tab" data-v="'+t[0]+'" aria-selected="'+(S.tab===t[0])+'">'+t[1]+(t[0]==='approvals'&&n?'<span class="n">'+n+'</span>':'')+(t[0]==='activity'&&actNew()?'<span class="n">'+actNew()+'</span>':'')+'</button>').join('')+'</nav>');
+}
+function legend(){return '<div class="legend">'+TORD.map(s=>'<span style="--sc:var(--s-'+s+')"><i></i>'+ST[s]+'</span>').join('')+'</div>'}
+const CLIENT_ST=['review','approved','changes'];
+function feed(){let l=sortPosts().filter(p=>p.format!=='Story');if(S.mode==='client'){l=l.filter(p=>p.status!=='draft');if(S.cf!=='all')l=l.filter(p=>p.status===S.cf)}return l}
+function pickDefault(){
+  const pool=S.tab==='grid'?feed():sortPosts().filter(p=>p.date.startsWith(S.month));
+  if(S.sel&&S.posts[S.sel]&&pool.some(p=>p.id===S.sel))return;
+  const r=pool.find(p=>p.status==='review')||pool.find(p=>p.date>=TODAY)||pool[pool.length-1];
+  S.sel=r?r.id:null;
+}
+function addBar(){return isTeam()?'<div class="bar" style="justify-content:flex-end"><button class="btn sm" data-act="import" style="margin-right:8px">Import posts</button><button class="btn acc sm" data-act="add">+ Add post</button></div>':''}
+function content(){
+  pickDefault();const cur=S.posts[S.sel];
+  return addBar()+calendar()+'<div style="margin-top:28px">'+(cur?detail(cur):'<div class="empty">Pick a post on the calendar to see it here.</div>')+'</div>';
+}
+function gridTab(){
+  pickDefault();const cur=S.posts[S.sel];
+  let chips='';
+  if(S.mode==='client'){const vis=sortPosts().filter(p=>p.format!=='Story'&&p.status!=='draft');const c=s=>vis.filter(p=>p.status===s).length;
+    chips='<div class="bar"><div><h2>Content review</h2><p class="muted" style="margin:4px 0 0">Each tile shows the first image; the Content calendar tab shows every image. Tap a post to see it in full, then set its status. '+c('review')+' waiting for your approval.</p></div><div class="grp">'+[['all','All ('+vis.length+')'],['review','Pending approval ('+c('review')+')'],['approved','Approved ('+c('approved')+')'],['changes','Changes requested ('+c('changes')+')']].map(x=>'<button class="chipb" data-act="cf" data-v="'+x[0]+'" aria-pressed="'+(S.cf===x[0])+'">'+x[1]+'</button>').join('')+'</div></div>'}
+  return chips+addBar()+'<div class="social-main" style="margin-top:0">'+igGrid()+'<div>'+(cur?detail(cur):'<div class="empty">Pick a post in the grid.</div>')+'</div></div>';
+}
+function thumbs(p){
+  const ids=p.assetIds||[];const n=Math.min(10,Math.max(ids.length,p.slides||1,linksOf(p).length));
+  let h='';for(let i=0;i<n;i++){h+=ids[i]?'<div class="th1"><img alt="Slide '+(i+1)+' of '+esc(p.title)+'" src="'+esc(artSrc(ids[i]))+'"></div>':'<div class="th1 empty1"><span>'+(n>1?'Slide '+(i+1):'Artwork')+'<br>to come</span></div>'}
+  return '<div class="thr">'+h+'</div><div class="muted" style="font-size:11px;margin-top:4px">'+n+' image'+(n>1?'s':'')+' · '+esc(p.format)+'</div>';
+}
+function docTab(){
+  const cl=S.mode==='client';
+  let l=sortPosts();if(cl){l=l.filter(p=>p.status!=='draft');if(S.cf!=='all')l=l.filter(p=>p.status===S.cf)}
+  let h='';
+  if(cl){const vis=sortPosts().filter(p=>p.status!=='draft');const c=s=>vis.filter(p=>p.status===s).length;
+    h+='<div class="bar"><div><h2>Content calendar</h2><p class="muted" style="margin:4px 0 0">Every post with all of its images and the full caption. '+c('review')+' waiting for your approval.</p></div><div class="grp">'+[['all','All ('+vis.length+')'],['review','Pending approval ('+c('review')+')'],['approved','Approved ('+c('approved')+')'],['changes','Changes requested ('+c('changes')+')']].map(x=>'<button class="chipb" data-act="cf" data-v="'+x[0]+'" aria-pressed="'+(S.cf===x[0])+'">'+x[1]+'</button>').join('')+'</div></div>'}
+  else h+=addBar();
+  const rows=l.map(p=>{
+    const ev=S.events.filter(e=>e.postId===p.id&&e.kind==='comment').length;
+    const cap=esc(p.caption||'').replace(/(^|\s)(#[A-Za-z]\w*)/g,'$1<span class="hl">$2</span>');
+    const opts=(cl?CLIENT_ST:TORD);const canSet=cl?CLIENT_ST.includes(p.status):true;
+    const ctl=(cl&&p.status==='review'?'<button class="btn ok sm" data-act="approve" data-v="'+p.id+'">Approve</button> ':'')+(canSet?'<select data-act="setstatus" data-id="'+p.id+'" aria-label="Status">'+opts.map(s=>'<option value="'+s+'"'+(isSel(p,s)?' selected':'')+'>'+ST[s]+'</option>').join('')+'</select>':'');
+    return '<tr'+(p.id===S.sel?' class="cur"':'')+'><td class="dc"><b>'+fmtDate(p.date)+'</b><br><span class="muted">'+fmtTime(p.time)+'</span><br><span class="muted">'+plats(p)+'</span></td><td class="ph">'+thumbs(p)+'</td><td><div class="docname"><b>'+esc(p.title)+'</b> '+badge(p.status)+'</div><div class="caption" style="margin:6px 0 0;max-height:none">'+cap+'</div>'+(linksOf(p).length?'<div class="links" style="margin-top:6px">'+linksOf(p).map((u,i,a)=>'<a class="lnk" href="'+esc(u)+'" target="_blank" rel="noopener">'+(a.length>1?'Slide '+(i+1):'Artwork')+' ↗</a>').join(' · ')+'</div>':'')+'<div class="row" style="margin-top:8px">'+ctl+'<button class="btn sm" data-act="docopen" data-v="'+p.id+'">Comments ('+ev+')</button></div></td></tr>'}).join('');
+  h+=l.length?'<div class="tw"><table class="list doc"><thead><tr><th>Date</th><th>Photo(s)</th><th>Caption</th></tr></thead><tbody>'+rows+'</tbody></table></div>':'<div class="empty">No posts to show yet.</div>';
+  const cur=S.posts[S.sel];
+  if(cur&&l.some(p=>p.id===cur.id))h+='<div style="margin-top:24px">'+detail(cur)+'</div>';
+  return h;
+}
+function calendar(){
+  const[y,m]=S.month.split('-').map(Number);
+  const first=new Date(y,m-1,1);const lead=(first.getDay()+6)%7;const days=new Date(y,m,0).getDate();
+  const months=[...new Set(sortPosts().map(p=>p.date.slice(0,7)).concat([TODAY.slice(0,7)]))].sort();const mi=months.indexOf(S.month);
+  const inMonth=sortPosts().filter(p=>p.date.startsWith(S.month));
+  const c={};inMonth.forEach(p=>{const k=p.status==='review'?'draft':p.status;c[k]=(c[k]||0)+1});
+  const sum=[inMonth.length+' posts'].concat(TORD.filter(k=>c[k]).map(k=>c[k]+' '+ST[k].toLowerCase())).join(' · ');
+  let cells=DOW.map(d=>'<div class="dow">'+d+'</div>').join('');
+  const total=Math.ceil((lead+days)/7)*7;
+  for(let i=0;i<total;i++){
+    const d=i-lead+1;
+    if(d<1||d>days){cells+='<div class="day out"></div>';continue}
+    const key=S.month+'-'+String(d).padStart(2,'0');
+    cells+='<div class="day'+(key===TODAY?' today':'')+'"><span class="dn">'+d+'</span>'+inMonth.filter(p=>p.date===key).map(p=>'<button class="pchip" data-act="pick" data-v="'+p.id+'" aria-current="'+(p.id===S.sel)+'" title="'+esc(p.title)+'"><i style="background:'+sw(p)+'"></i><span>'+(p.platforms.includes('instagram')?'IG':'FB')+' · '+esc(p.title)+'</span><b class="dot" style="background:var(--s-'+p.status+')"></b></button>').join('')+'</div>';
+  }
+  const agenda=inMonth.map(p=>'<button class="ag" data-act="pick" data-v="'+p.id+'" aria-current="'+(p.id===S.sel)+'"><span class="d">'+fmtDate(p.date)+'<br>'+fmtTime(p.time)+'</span><i style="background:'+sw(p)+'"></i><span>'+esc(p.title)+'<small>'+plats(p)+' · '+p.format+'</small></span><b class="dot" style="background:var(--s-'+p.status+')"></b></button>').join('')||'<div class="empty" style="border:0">No posts planned this month.</div>';
+  return '<div class="cal-head"><div><h3 class="mh">'+first.toLocaleDateString('en-AU',{month:'long',year:'numeric'})+'</h3><p>'+sum+'</p></div><div class="mnav"><button class="btn sm" data-act="mnav" data-v="-1"'+(mi<=0?' disabled':'')+'>‹ Prev</button><button class="btn sm" data-act="mnav" data-v="1"'+(mi>=months.length-1?' disabled':'')+'>Next ›</button></div></div><div class="cal">'+cells+'</div><div class="agenda">'+agenda+'</div>'+legend();
+}
+function igGrid(){
+  let ig=feed();if(S.order!=='old')ig=ig.slice().reverse();
+  const planned=ig.filter(p=>p.status!=='published').length;
+  return '<div class="igwrap"><div class="igprof"><span class="igav">ACT</span><div><b>@actyva.aus.nz</b><small>'+ig.length+' feed posts · '+(S.order==='old'?'oldest first':'newest first, as it will look on Instagram')+'</small></div></div><div class="seg" style="justify-self:start"><button data-act="ord" data-v="new" aria-pressed="'+(S.order!=='old')+'">Feed order</button><button data-act="ord" data-v="old" aria-pressed="'+(S.order==='old')+'">Oldest first</button></div><div class="iggrid">'+ig.map(p=>'<button class="tile" data-act="pick" data-v="'+p.id+'" aria-current="'+(p.id===S.sel)+'" aria-label="'+esc(p.title)+'">'+(!p.platforms.includes('instagram')?'<span class="fbonly">FB only</span>':'')+(p.status!=='published'?'<span class="plan"><b class="dot" style="background:var(--s-'+p.status+')"></b>'+fmtDate(p.date).replace(/^\w+, /,'')+'</span>':'')+tile(p)+'</button>').join('')+'</div></div>';
+}
+const SL={server:'Slack',channel:'C0BH85ZA81X',name:'#automations',url:'https://claude.ai/artifact/HYqzHpPS1iE969ZjkiWUVf'};
+function slackBlock(){
+  if(S.mode!=='team')return '';
+  const ap=sortPosts().filter(p=>p.metricool&&!p.slacked);
+  if(!S.mcp)return '<div class="card" style="margin-bottom:16px"><span class="label">Slack</span><p class="muted" style="margin:6px 0 0">Slack updates work when this page is opened inside Claude by someone who has Slack connected.</p></div>';
+  const c=S.cslack;
+  return '<div class="card" style="margin-bottom:16px"><span class="label">Slack update · '+SL.name+'</span><p class="muted" style="margin:6px 0 10px">'+(ap.length?ap.length+' post'+(ap.length===1?'':'s')+' sent to Metricool and not yet announced. Tell the team to review '+(ap.length===1?'it':'them')+' in Metricool.':'Nothing new to announce. Schedule or draft a post in Metricool first.')+'</p><div class="row"><button class="btn '+(c?'bad':'pri')+'" data-act="slk"'+(ap.length&&!S.slacking?'':' disabled')+'>'+(c?'Confirm: post to '+SL.name:'Send Slack update')+'</button>'+(c?'<button class="btn sm" data-act="slkx">Cancel</button>':'')+'</div></div>';
+}
+async function slackSend(){
+  const ap=sortPosts().filter(p=>p.metricool&&!p.slacked);if(!ap.length)return;
+  S.slacking=true;S.cslack=false;render();
+  const lines=ap.map(p=>'• '+fmtDate(p.date)+', '+fmtTime(p.time)+' · '+p.format+' · '+plats(p)+' · '+p.title+' ('+(p.metricool.draft?'draft':'scheduled')+')');
+  const msg='**Actyva: '+ap.length+' post'+(ap.length===1?'':'s')+' now in Metricool. Please review there**\n'+lines.join('\n')+'\n\nReview in Metricool: https://app.metricool.com/\nBrand Room: '+SL.url;
+  try{await S.mcp.callTool(SL.server,'slack_send_message',{channel_id:SL.channel,message:msg});
+    for(const p of ap){await savePost(p.id,{slacked:Date.now()})}
+    toast('Posted to '+SL.name)}catch(e){toast('Slack: '+((e&&e.message)||(e&&e.code)||'could not send'))}
+  S.slacking=false;render();
+}
+function approvals(){
+  const ps=S.mode==='client'?need():sortPosts().filter(p=>p.status==='draft'||p.status==='review');
+  let h=slackBlock()+'<div class="bar"><h2>Pending approval</h2><span class="muted">'+ps.length+' post'+(ps.length===1?'':'s')+'</span></div>';
+  if(!ps.length)h+='<div class="empty">Nothing pending.</div>';
+  else h+='<div class="tw"><table class="list"><tbody>'+ps.map(p=>'<tr><td style="width:84px"><div class="art" style="width:72px;aspect-ratio:4/5">'+tile(p)+'</div></td><td><b>'+esc(p.title)+'</b><div class="muted">'+fmtDate(p.date)+' · '+fmtTime(p.time)+' · '+p.format+' · '+plats(p)+'</div><div style="margin-top:4px">'+esc((p.caption||'').slice(0,160))+'…</div>'+(p.note?'<div class="muted" style="margin-top:4px">Note: '+esc(p.note)+'</div>':'')+'</td><td style="white-space:nowrap;text-align:right"><div class="row" style="justify-content:flex-end"><button class="btn sm" data-act="open" data-v="'+p.id+'">Open</button><button class="btn sm ok" data-act="approve" data-v="'+p.id+'">Approve</button></div></td></tr>').join('')+'</tbody></table></div>';
+  const ch=sortPosts().filter(p=>p.status==='changes');
+  if(ch.length)h+='<h3 style="margin-top:28px">Changes requested · with the team</h3>'+ch.map(p=>'<button class="pill" style="--sc:var(--s-changes);margin-bottom:4px" data-act="open" data-v="'+p.id+'"><b>'+fmtDate(p.date)+'</b><span>'+esc(p.title)+'</span></button>').join('');
+  return h;
+}
+function pipeline(){
+  const ps=sortPosts();
+  const up=ps.filter(p=>p.date>=TODAY).length;
+  return '<div class="bar"><h2>Pipeline</h2><span class="muted">'+ps.length+' posts · '+up+' still to go live</span></div><div class="cols">'+TORD.map(s=>{const l=ps.filter(p=>isSel(p,s));return '<div class="kc"><div class="hd"><span style="color:var(--s-'+s+')">'+ST[s]+'</span><span>'+l.length+'</span></div>'+(l.length?l.map(p=>'<button class="kcard" style="--sc:var(--s-'+s+')" data-act="open" data-v="'+p.id+'"><b>'+esc(p.title)+'</b><small>'+fmtDate(p.date)+' · '+p.format+'</small></button>').join(''):'<div class="muted" style="padding:8px">Empty</div>')+'</div>'}).join('')+'</div>';
+}
+function mapType(f){return f==='Reel'?'REEL':f==='Story'?'STORY':'POST'}
+function rowsFor(){
+  const ps=sortPosts().filter(p=>S.exp.st[p.status]&&p.date>=S.exp.from&&p.date<=S.exp.to);
+  const rows=[];
+  ps.forEach(p=>{
+    ['instagram','facebook'].forEach(pl=>{if(!p.platforms.includes(pl))return;
+      const u=mediaOf(p);
+      rows.push({p,pl,u,missing:!u.length||u.length<Math.max(p.slides||1,(p.assetIds||[]).length)});
+    });
+  });
+  return rows;
+}
+const HEAD0=['Text','Date','Time','Draft','Facebook','Instagram'];const HEAD1=['Facebook Post Type','Instagram Post Type','Brand name'];let HEAD=[];
+function csvOf(rows){const n=Math.max(3,...rows.map(r=>r.u.length));const head=HEAD0.concat(Array.from({length:n},(_,i)=>'Picture Url '+(i+1)),HEAD1);const q=v=>'"'+String(v).replace(/"/g,'""')+'"';
+  const line=r=>{const p=r.p,pl=r.pl;return [p.caption||'',p.date,p.time+':00','false',pl==='facebook'?'true':'false',pl==='instagram'?'true':'false'].concat(Array.from({length:n},(_,i)=>r.u[i]||''),[pl==='facebook'?mapType(p.format):'',pl==='instagram'?mapType(p.format):'','Actyva Australia.Nz']).map(q).join(',')};
+  return [head.map(q).join(',')].concat(rows.map(line)).join('\r\n')}
+function exportView(){
+  const rows=rowsFor();const miss=rows.filter(r=>r.missing).length;
+  return '<div class="bar"><h2>Metricool export</h2></div><div class="two"><div class="card"><h3>1 · Choose what goes out</h3><div class="field"><label>From</label><input type="date" data-act="exf" value="'+S.exp.from+'"></div><div class="field" style="margin-top:8px"><label>To</label><input type="date" data-act="ext" value="'+S.exp.to+'"></div><div class="row" style="margin-top:12px">'+['approved','scheduled','draft','review'].map(s=>'<label><input type="checkbox" data-act="exs" data-v="'+s+'"'+(S.exp.st[s]?' checked':'')+'> '+ST[s]+'</label>').join('')+'</div><p class="muted">Only approved posts should normally be exported. One row per platform, matching the bulk-import columns your Gemini step produces today.</p></div>'+
+  '<div class="card"><h3>2 · Download</h3><p><b>'+rows.length+'</b> rows from <b>'+new Set(rows.map(r=>r.p.id)).size+'</b> posts.</p>'+(miss?'<div class="warn">'+miss+' row'+(miss===1?' has':'s have')+' missing or incomplete image URLs (a carousel needs one per slide). Metricool needs the Cloudinary link (or a Drive link, if Drive is linked in Metricool). Add them on each post.</div>':'<div class="muted">All rows have image URLs.</div>')+'<div class="row" style="margin-top:12px"><button class="btn pri" data-act="csv"'+(rows.length&&S.dl?'':' disabled')+'>Download CSV</button></div>'+(S.dl?'':'<p class="muted">Download is available when this page is opened inside Claude.</p>')+'<p class="muted">Direct scheduling into Metricool (without a CSV) is done by Claude through the Metricool connector, not from this page.</p></div></div>'+
+  '<div class="tw" style="margin-top:16px"><table class="list"><thead><tr><th>Date</th><th>Channel</th><th>Type</th><th>Post</th><th>Image URL</th></tr></thead><tbody>'+(rows.length?rows.map(r=>'<tr><td style="white-space:nowrap">'+r.p.date+' '+r.p.time+'</td><td>'+r.pl+'</td><td>'+mapType(r.p.format)+'</td><td>'+esc(r.p.title)+'</td><td>'+(r.missing?'<span style="color:var(--s-changes)">missing</span>':'<span class="muted">'+r.u.length+' media link'+(r.u.length>1?'s':'')+((r.p.imageUrls||[]).length?'':' (Drive)')+'</span>')+'</td></tr>').join(''):'<tr><td colspan="5" class="muted">No posts match.</td></tr>')+'</tbody></table></div>';
+}
+function brand(){
+  const sw=[['Kemon Black 000000','t1'],['Actyva Green 4A5D23','t2'],['Actyva Cream F5F5DC','t3'],['Dark moss','t4'],['Sage','t5']];
+  return '<div class="bar"><h2>Brand book</h2></div><div class="warn" style="margin-bottom:16px">Black, green and cream use the hex values supplied for Actyva and Kemon. Confirm them against the official brand board.</div>'+
+  '<div class="card" style="margin-bottom:16px"><h3>Palette</h3><div class="sw">'+sw.map(s=>'<div style="background:var(--'+s[1]+');color:var(--'+s[1]+'f)">'+s[0]+'</div>').join('')+'</div></div>'+
+  '<div class="two"><div class="card"><h3>Channel roles</h3><p class="muted">Not set yet. Add the channel roles from the Actyva brand guidelines.</p></div>'+
+  '<div class="card"><h3>Typography</h3><p class="muted">Not set yet. Add the fonts from the Actyva brand guidelines.</p></div>'+
+  '<div class="card"><h3>Hashtags used so far</h3><p>#Actyva<br>#ActiveNaturePoweredByScience<br>#CleanBeauty</p></div>'+
+  '<div class="card"><h3>Values</h3><p>Active nature, powered by science.</p><p class="muted">Taken from the approved captions. Replace with the official wording.</p></div></div>';
+}
+function activity(){
+  const ev=S.events.slice(0,80);
+  return '<div class="bar"><h2>Activity</h2><span class="muted">Every comment and status change, with who and when</span></div>'+(ev.length?'<div class="th" style="max-height:none">'+ev.map(evRow).join('')+'</div>':'<div class="empty">No activity yet. Comments and approvals will show up here.</div>');
+}
+function evRow(e){
+  const p=S.posts[e.postId];const t=new Date(e.at).toLocaleString('en-AU',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'});
+  const what=e.kind==='status'?'moved to <b>'+esc(ST[e.to]||e.to)+'</b>':'commented';
+  return '<div class="ev '+(e.kind==='comment'?'c':'')+'"><div class="m"><b>'+esc(nameOf(e.by))+'</b> '+what+(p?' on '+esc(p.title):'')+' · '+t+'</div>'+(e.quote?'<div class="eq">On “'+esc(e.quote)+'”</div>':'')+(e.text?'<div>'+esc(e.text)+'</div>':'')+'</div>';
+}
+function qbarHtml(){return S.quote&&S.quoteFor===S.sel?'<div class="qb">Commenting on “'+esc(S.quote.length>140?S.quote.slice(0,140)+'…':S.quote)+'” <button class="lnk" data-act="qclear">Clear</button></div>':''}
+function detail(p){
+  const team=isTeam();const ev=S.events.filter(e=>e.postId===p.id);
+  const ids=p.assetIds||[];const n=ids.length||Math.max(p.slides||1,linksOf(p).length);
+  const canReview=!team&&p.status==='review';const ro=!team&&S.canWrite===false;
+  let act='';
+  if(ro){act+='<span class="muted">To approve or request changes, leave a comment below (for example “Approved” or what to change). The team updates the status.</span>'}
+  else if(!team&&CLIENT_ST.includes(p.status)){act+=(p.status==='review'?'<button class="btn ok" data-act="approve" data-v="'+p.id+'">Approve</button>':'')+'<label class="stl">Status <select data-act="setstatus">'+CLIENT_ST.map(s=>'<option value="'+s+'"'+(p.status===s?' selected':'')+'>'+ST[s]+'</option>').join('')+'</select></label>'}
+  if(team){
+    act+='<label class="stl">Status <select data-act="setstatus">'+TORD.map(s=>'<option value="'+s+'"'+(isSel(p,s)?' selected':'')+'>'+ST[s]+'</option>').join('')+'</select></label>';
+    act+='<button class="btn" data-act="tools">'+(S.tools?'Hide':'Edit')+' details</button>';
+    act+=S.cdel===p.id?'<span class="muted">Delete this post, its comments and artwork links for good?'+(p.metricool?' The Metricool draft stays and must be removed there.':'')+'</span><button class="btn bad" data-act="delyes">Yes, delete</button><button class="btn" data-act="delno">Cancel</button>':'<button class="btn bad" data-act="delask">Delete post</button>';
+  }
+  const tools=team&&S.tools?'<div class="card tools"><div class="field"><label>Caption</label><textarea id="capEd" rows="7">'+esc(p.caption)+'</textarea><div class="row" style="margin-top:6px"><button class="btn sm" data-act="savecap">Save caption</button></div></div>'+
+   '<div class="field"><label>Artwork links, one per line (one per slide for a carousel, or a folder link)</label><textarea id="drv" rows="3" placeholder="https://drive.google.com/…">'+esc(linksOf(p).join('\n'))+'</textarea><div class="row" style="margin-top:6px"><button class="btn sm" data-act="savedrive">Save link</button></div></div>'+
+   '<div class="field"><label>Public image URLs for Metricool, one per line in slide order (e.g. Cloudinary)</label><textarea id="urls" rows="4" placeholder="https://res.cloudinary.com/…">'+esc((p.imageUrls||[]).join('\n'))+'</textarea><div class="row" style="margin-top:6px"><button class="btn sm" data-act="saveurls">Save URLs</button></div></div>'+
+   '<div class="field"><label>Date and time</label><div class="row"><input type="date" id="dd" value="'+p.date+'" style="width:auto"><input type="time" id="tt" value="'+p.time+'" style="width:auto"><button class="btn sm" data-act="savedt">Reschedule</button></div></div>'+
+   (S.assets?'<div class="field"><label>Artwork images (adds to the end, slide order = upload order)</label><input type="file" accept="image/*" multiple data-act="upload">'+(ids.length?'<div class="row" style="margin-top:6px"><button class="btn sm bad" data-act="rmslide">Remove slide '+(Math.min(S.slide,ids.length-1)+1)+'</button><button class="btn sm bad" data-act="clearart">Remove all</button></div>':'')+'</div>':'<p class="muted">Artwork upload is available when this page is opened inside Claude.</p>')+'</div>':'';
+  const tags=(p.caption.match(/(^|\s)#[\w]+/g)||[]).length;
+  let capx=esc(p.caption);ev.filter(e=>e.quote).forEach(e=>{const q=esc(e.quote);const i=capx.indexOf(q);if(i>=0&&!/<mark/.test(capx.slice(Math.max(0,i-20),i)))capx=capx.slice(0,i)+'<mark class="qm">'+q+'</mark>'+capx.slice(i+q.length)});
+  const cap=capx.replace(/(^|\s)(#[A-Za-z]\w*)/g,'$1<span class="hl">$2</span>');
+  return '<article class="post-detail"><div class="pd-top"><div class="pd-visual">'+tile(p,true)+'</div><div class="pd-info"><div>'+badge(p.status)+'</div><h3>'+esc(p.title)+'</h3>'+
+   '<dl class="dl"><dt>'+(p.status==='published'?'Went live':'Goes live')+'</dt><dd>'+fmtDate(p.date)+', '+fmtTime(p.time)+'</dd><dt>Channels</dt><dd>'+plats(p)+'</dd><dt>Format</dt><dd>'+esc(p.format)+(n>1?' · '+n+' slides':'')+'</dd></dl>'+
+   (n>1?'<div class="row"><button class="btn sm" data-act="slide" data-v="-1">←</button><span class="muted">'+(Math.min(S.slide,n-1)+1)+' / '+n+'</span><button class="btn sm" data-act="slide" data-v="1">→</button></div>':'')+'</div></div>'+
+   (act?'<div class="row">'+act+'</div>':'')+tools+
+   (team?'<div class="card ready"><span class="label">Metricool readiness</span><ul class="clean" style="list-style:none;padding:0;margin:8px 0 0">'+ready(p).map(r=>'<li>'+(r[1]?'<b style="color:var(--s-approved)">✓</b>':'<b style="color:var(--s-changes)">✗</b>')+' '+r[0]+'</li>').join('')+'</ul></div>':'')+
+   (team?mcBlock(p):'')+
+   (p.note?'<div class="brief"><q>'+esc(p.note)+'</q><small>Note from the team</small></div>':'')+
+   '<div><span class="label">Caption</span><p class="caption">'+cap+'</p><p class="muted" style="margin:6px 0 0;font-size:12px">Tip: highlight any words in the caption to comment on them.</p></div>'+
+   (linksOf(p).length?'<div class="links"><span class="label">Original artwork</span> '+linksOf(p).map((u,i,a)=>'<a class="lnk" href="'+esc(u)+'" target="_blank" rel="noopener">'+(a.length>1?'Slide '+(i+1):'Open in Drive')+' ↗</a>').join(' · ')+'</div>':'')+
+   '<div><span class="label">Comments and activity ('+ev.length+')</span><div class="th" style="margin-top:8px">'+(ev.length?ev.map(evRow).join(''):'<span class="muted">No comments yet.</span>')+'</div></div>'+
+   (ro?'<div class="field"><label>Comment</label><p class="muted" style="margin:0 0 8px">Highlight words in the caption and press “Comment on this”, or comment on the whole post.</p><div class="row"><button class="btn pri sm" data-act="ncomment">Comment on this post</button></div></div></article>':'<div class="field"><label>Add a comment as '+(team?'team':'client')+'</label><div id="qbar">'+qbarHtml()+'</div><textarea id="cm" rows="2" placeholder="Write a comment…">'+esc(S.draft)+'</textarea><div class="row" style="margin-top:6px;flex-wrap:wrap;gap:6px;align-items:center"><span class="muted" style="font-size:12px">Tag (they get an email):</span>'+window.ROOM.tags.map(n=>'<button class="btn sm" data-act="mention" data-v="'+n+'">@'+n+'</button>').join('')+'</div><div class="row" style="margin-top:6px"><button class="btn pri sm" data-act="comment">Post comment</button></div></div></article>');
+}
+
+function importForm(){
+  return '<div class="ov" data-act="bg"><div class="dlgwrap" style="max-width:640px"><button class="close" data-act="close" aria-label="Close">×</button><div class="dlg" style="grid-template-columns:1fr"><div class="side"><h2>Import posts</h2>'+
+  '<p class="muted" style="margin:0">Copy the rows from your sheet (with the header row) and paste them below, or choose a CSV file. Columns: <b>date, caption, artwork URL</b> (several URLs separated by commas make a carousel). Optional: title, time, format, channels. Dates can be like Nov 5, 5/11/2026 or 2026-11-05. A line saying REEL or VID in the caption marks it as a video. Imported posts land as <b>Pending</b>, so the client sees them straight away.</p>'+
+  '<div class="field"><label>Paste rows here</label><textarea id="imp_t" rows="8" placeholder="date\tcaption\tartwork URL"></textarea></div>'+
+  '<div class="field"><label>Or choose a CSV file</label><input type="file" id="imp_f" accept=".csv,text/csv,text/plain"></div>'+
+  '<div class="field"><label>Or upload a content calendar PDF (Date | Photo | Caption)</label><input type="file" id="imp_pdf" accept="application/pdf,.pdf"></div>'+
+  '<div class="field"><label>Import as</label><select id="imp_st"><option value="review">Pending (the client can see it)</option><option value="draft">Draft (only the team sees it)</option></select></div>'+
+  '<p class="muted" id="imp_prog" style="margin:0"></p>'+
+  (S.impMsg?'<p class="muted" style="margin:0">'+esc(S.impMsg)+'</p>':'')+
+  '<div class="row"><button class="btn acc" data-act="importgo">Import</button><button class="btn" data-act="importtpl">Download template</button></div></div></div></div></div>';
+}
+function parseTable(txt){
+  txt=txt.replace(/^﻿/,'');
+  const first=txt.split(/\r?\n/)[0]||'';const d=first.includes('\t')?'\t':',';
+  const rows=[];let row=[],cur='',q=false;
+  for(let i=0;i<txt.length;i++){const c=txt[i];
+    if(q){if(c==='"'){if(txt[i+1]==='"'){cur+='"';i++}else q=false}else cur+=c}
+    else if(c==='"')q=true;
+    else if(c===d){row.push(cur);cur=''}
+    else if(c==='\n'||c==='\r'){if(c==='\r'&&txt[i+1]==='\n')i++;row.push(cur);cur='';if(row.some(x=>x.trim()))rows.push(row);row=[]}
+    else cur+=c}
+  row.push(cur);if(row.some(x=>x.trim()))rows.push(row);return rows}
+function normDate(v){v=(v||'').trim();let m=v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);if(m)return m[1]+'-'+m[2].padStart(2,'0')+'-'+m[3].padStart(2,'0');
+  m=v.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})/);if(m){const y=m[3].length===2?'20'+m[3]:m[3];return y+'-'+m[2].padStart(2,'0')+'-'+m[1].padStart(2,'0')}
+  const MN=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+  let mo=-1,day=0,yr=0;
+  m=v.match(/^(?:[A-Za-z]+,?\s+)?([A-Za-z]{3,9})\.?\s+(\d{1,2})(?:st|nd|rd|th)?(?:,?\s+(\d{4}))?/);
+  if(m){mo=MN.indexOf(m[1].slice(0,3).toLowerCase());day=+m[2];yr=+(m[3]||0)}
+  if(mo<0){m=v.match(/^(?:[A-Za-z]+,?\s+)?(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]{3,9})\.?(?:,?\s+(\d{4}))?/);if(m){mo=MN.indexOf(m[2].slice(0,3).toLowerCase());day=+m[1];yr=+(m[3]||0)}}
+  if(mo<0||!day)return '';
+  if(!yr){const t=new Date();yr=t.getFullYear();const cand=new Date(yr,mo,day);if(cand<new Date(t.getFullYear(),t.getMonth(),t.getDate()-60))yr++}
+  return yr+'-'+String(mo+1).padStart(2,'0')+'-'+String(day).padStart(2,'0')}
+function normTime(v){const m=(v||'').trim().match(/^(\d{1,2})[:.](\d{2})\s*(am|pm)?/i);if(!m)return '08:00';let h=+m[1];if(m[3]){const pm=m[3].toLowerCase()==='pm';if(pm&&h<12)h+=12;if(!pm&&h===12)h=0}return String(h).padStart(2,'0')+':'+m[2]}
+
+/* ---------- PDF content calendar import ---------- */
+function loadPdfJs(){
+  if(window.pdfjsLib)return Promise.resolve();
+  return new Promise((ok,bad)=>{const sc=document.createElement('script');sc.src='/vendor/pdf.min.js';sc.onload=ok;sc.onerror=()=>bad(new Error('Could not load the PDF reader'));document.head.appendChild(sc)})
+}
+async function pdfToItems(file,say){
+  await loadPdfJs();
+  const lib=window.pdfjsLib;lib.GlobalWorkerOptions.workerSrc='/vendor/pdf.worker.min.js';
+  const doc=await lib.getDocument({data:await file.arrayBuffer()}).promise;
+  const OPS=lib.OPS;const mul=(m,n)=>[m[0]*n[0]+m[1]*n[2],m[0]*n[1]+m[1]*n[3],m[2]*n[0]+m[3]*n[2],m[2]*n[1]+m[3]*n[3],m[4]*n[0]+m[5]*n[2]+n[4],m[4]*n[1]+m[5]*n[3]+n[5]];
+  const items=[];
+  for(let pn=1;pn<=doc.numPages;pn++){
+    say('Reading page '+pn+' of '+doc.numPages+'…');
+    const page=await doc.getPage(pn);const vp=page.getViewport({scale:1});const W=vp.width,H=vp.height;
+    const tc=await page.getTextContent();
+    const T=tc.items.filter(t=>t.str!=null&&t.str.trim()!=='').map(t=>({s:t.str,x:t.transform[4],yb:H-t.transform[5],w:t.width||0}));
+    const ol=await page.getOperatorList();let ctm=[1,0,0,1,0,0];const st=[];const imgs=[];
+    for(let i=0;i<ol.fnArray.length;i++){const f=ol.fnArray[i],a=ol.argsArray[i];
+      if(f===OPS.save)st.push(ctm);
+      else if(f===OPS.restore){if(st.length)ctm=st.pop()}
+      else if(f===OPS.transform)ctm=mul(a,ctm);
+      else if(f===OPS.paintFormXObjectBegin){st.push(ctm);if(a&&a[0])ctm=mul(a[0],ctm)}
+      else if(f===OPS.paintFormXObjectEnd){if(st.length)ctm=st.pop()}
+      else if(f===OPS.paintImageXObject||f===OPS.paintInlineImageXObject||(OPS.paintJpegXObject&&f===OPS.paintJpegXObject)){
+        const x0=Math.min(ctm[4],ctm[4]+ctm[0]),x1=Math.max(ctm[4],ctm[4]+ctm[0]),y0=Math.min(ctm[5],ctm[5]+ctm[3]),y1=Math.max(ctm[5],ctm[5]+ctm[3]);
+        imgs.push({x0,x1,top:H-y1,bottom:H-y0,id:a[0],inline:f===OPS.paintInlineImageXObject,page})}
+    }
+    const pics=imgs.filter(m=>m.x0<W*0.55&&(m.x1-m.x0)>30&&(m.bottom-m.top)>30).sort((p,q)=>p.top-q.top||p.x0-q.x0);
+    const groups=[];for(const m of pics){const g=groups[groups.length-1];if(g&&m.top-g.bottom<=5){g.imgs.push(m);g.bottom=Math.max(g.bottom,m.bottom)}else groups.push({top:m.top,bottom:m.bottom,imgs:[m]})}
+    const PAD=9;const starts=groups.map(g=>g.top-PAD);
+    const rowOf=y=>{let k=-1;for(let i=0;i<starts.length;i++)if(y>=starts[i])k=i;return k};
+    const rows=groups.map(g=>({imgs:g.imgs.sort((p,q)=>Math.round(p.top/25)-Math.round(q.top/25)||p.x0-q.x0),date:'',lines:[]}));
+    const cont={lines:[]};
+    // text lines (caption column) and dates (left column)
+    const byRow=new Map();
+    for(const t of T){
+      const k=rowOf(t.yb-8);
+      if(t.x<W*0.2){const isDate=/^[A-Za-z]{3,9}\.?\s*\d{1,2}|^\d{1,2}[\/.\- ]/.test(t.s.trim());if(isDate&&k>=0&&!rows[k].date)rows[k].date=t.s.trim();continue}
+      if(t.x<W*0.5)continue;
+      const tgt=k<0?cont:rows[k];(tgt.raw=tgt.raw||[]).push(t)}
+    const mkLines=raw=>{if(!raw||!raw.length)return[];const ls=[];raw.sort((p,q)=>p.yb-q.yb||p.x-q.x);
+      for(const t of raw){const l=ls[ls.length-1];if(l&&Math.abs(l.yb-t.yb)<2.5){const prevEnd=l.end;const gap=t.x-prevEnd;l.text+=(gap>1&&!l.text.endsWith(' ')&&!t.s.startsWith(' ')?' ':'')+t.s;l.end=t.x+t.w;l.x1=l.end}else ls.push({yb:t.yb,text:t.s,end:t.x+t.w,x1:t.x+t.w})}
+      return ls};
+    const reflow=raw=>{const ls=mkLines(raw);if(!ls.length)return'';
+      const gaps=ls.slice(1).map((l,i)=>l.yb-ls[i].yb);const base=gaps.length?Math.max(Math.min(...gaps),8):12;
+      const MK=/^\*?(vid|video|reel)$/i;let out=[],cur='',prev=null,px1=0;
+      for(const l of ls){const t=l.text.trim();const np=prev!==null&&gaps.length&&(l.yb-prev)>base*1.6;
+        const brk=/^(✔|•|-|#|📷|🎥|📸)/.test(t)||MK.test(t)||(prev!==null&&MK.test(cur.trim()));
+        if(prev===null)cur=t;
+        else if(np||brk){out.push(cur);if(np)out.push('');cur=t}
+        else{const last=cur.split(' ').pop();cur+=((/^https?:/.test(last)&&px1>W-60)?'':' ')+t}
+        prev=l.yb;px1=l.x1}
+      out.push(cur);return out.join('\n').trim()};
+    rows.forEach(r=>{r.cap=reflow(r.raw)});
+    const contCap=reflow(cont.raw);
+    if(contCap&&items.length)items[items.length-1].cap+='\n\n'+contCap;
+    for(const r of rows){
+      if(!r.date&&!r.cap&&r.imgs.length&&items.length){items[items.length-1].imgs.push(...r.imgs);continue}
+      items.push({date:r.date,cap:r.cap,imgs:r.imgs.slice()})}
+  }
+  return items;
+}
+async function imgBlob(m){
+  const store=m.id&&String(m.id).startsWith('g_')?m.page.commonObjs:m.page.objs;
+  const im=m.inline?m.id:await new Promise(res=>store.get(m.id,res));
+  const c=document.createElement('canvas');
+  let w=im.width,h=im.height;const sc=Math.min(1,1350/Math.max(w,h));
+  const src=document.createElement('canvas');src.width=w;src.height=h;const sx=src.getContext('2d');
+  if(im.bitmap){sx.drawImage(im.bitmap,0,0)}
+  else{const d=im.data,n=w*h;const out=sx.createImageData(w,h);const o=out.data;
+    if(im.kind===3||(d.length===n*4)){o.set(d.subarray(0,n*4))}
+    else if(im.kind===2||(d.length===n*3)){for(let i=0,j=0;i<n;i++){o[j++]=d[i*3];o[j++]=d[i*3+1];o[j++]=d[i*3+2];o[j++]=255}}
+    else{const rb=(w+7)>>3;for(let y=0;y<h;y++)for(let x=0;x<w;x++){const bit=(d[y*rb+(x>>3)]>>(7-(x&7)))&1;const v=bit?255:0;const j=(y*w+x)*4;o[j]=o[j+1]=o[j+2]=v;o[j+3]=255}}
+    sx.putImageData(out,0,0)}
+  c.width=Math.round(w*sc);c.height=Math.round(h*sc);const cx=c.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,c.width,c.height);cx.drawImage(src,0,0,c.width,c.height);
+  return new Promise(res=>c.toBlob(res,'image/jpeg',0.85));
+}
+async function runPdfImport(file){
+  const prog=document.getElementById('imp_prog');const say=t=>{if(prog)prog.textContent=t};
+  const status=(document.getElementById('imp_st')||{}).value==='draft'?'draft':'review';
+  try{
+    const items=await pdfToItems(file,say);
+    const clean=s=>(s||'').replace(/[-]|[\u{F0000}-\u{10FFFF}]/gu,'').replace(/ /g,' ').replace(/[ \t]+\n/g,'\n').replace(/[ \t]+$/gm,'');
+    const ok=items.map(it=>({...it,iso:normDate(it.date),cap:clean(it.cap)})).filter(it=>it.iso);
+    const skipped=items.length-ok.length;
+    if(!ok.length){say('I could not find any dated posts in this PDF. It needs a table with a Date column.');return}
+    let n=0,pics=0;const stamp=Date.now().toString(36);
+    for(let i=0;i<ok.length;i++){const it=ok[i];say('Adding post '+(i+1)+' of '+ok.length+' ('+it.date+')…');
+      let cap=it.cap;let mark='';cap=cap.replace(/(^|\n)\s*\*?(REEL|VID|VIDEO|STORY|STORIES|CAROUSEL)\s*(?=\n|$)/gi,(m0,pre,w)=>{mark=w.toLowerCase();return pre}).replace(/\n{3,}/g,'\n\n').trim();
+      if(!cap)cap='(Caption to come)';
+      let title=(cap.split('\n').find(x=>x.trim())||'').trim();if(title.length>70)title=title.slice(0,67).trim()+'…';
+      const ids=[];for(const m of it.imgs){try{const b=await imgBlob(m);const r=await S.assets.upload(b);ids.push(r.id);pics++}catch(e){}}
+      const format=/reel|vid/.test(mark)?'Reel':/stor/.test(mark)?'Story':(/carousel/.test(mark)||ids.length>1?'Carousel':'Static');
+      const id='p'+stamp+i;
+      await savePost(id,{id,date:it.iso,time:'08:00',format,platforms:['instagram','facebook'],title,caption:cap,driveUrls:[],driveUrl:'',status,note:'',slides:Math.max(1,ids.length),assetIds:ids,imageUrls:[]},{kind:'status',to:status,text:'Imported from PDF'});n++}
+    S.importing=false;S.impMsg='';toast('Imported '+n+' posts with '+pics+' pictures'+(skipped?' ('+skipped+' skipped: no date)':'')+'.');render()
+  }catch(e){say('Sorry, I could not read that PDF ('+(e&&e.message||e)+'). Try the sheet import instead.')}
+}
+async function runImport(txt){
+  const rows=parseTable(txt);if(rows.length<2){S.impMsg='Nothing to import. Include the header row and at least one post.';return render()}
+  const head=rows[0].map(h=>h.trim().toLowerCase());
+  const find=(f)=>head.findIndex(f);
+  const capI=find(h=>h.includes('caption')||h==='copy');
+  const linkI=(()=>{let k=find((h,i)=>i!==capI&&/artwork|url|photo|image|drive/.test(h));if(k<0)k=find((h,i)=>i!==capI&&h.includes('link'));return k})();
+  const ix={date:find(h=>h.includes('date')),time:find(h=>h.includes('time')),format:find(h=>h.includes('format')||h==='type'),ch:find(h=>h.includes('channel')||h.includes('platform')),title:find(h=>h.includes('title')||h==='name'),cap:capI,links:linkI};
+  if(ix.date<0||(ix.title<0&&ix.cap<0)){S.impMsg='I need a "date" column and a "caption" (or "title") column in the header row.';return render()}
+  let n=0,bad=0;const stamp=Date.now().toString(36);
+  for(let i=1;i<rows.length;i++){const r=rows[i];const g=k=>ix[k]>=0?(r[ix[k]]||'').trim():'';
+    const date=normDate(g('date'));let cap=g('cap');
+    let mark='';cap=cap.replace(/(^|\n)\s*(REEL|VID|VIDEO|STORY|STORIES|CAROUSEL)\s*(?=\n|$)/gi,(m0,pre,w)=>{mark=w.toLowerCase();return pre}).replace(/\n{3,}/g,'\n\n').trim();
+    let title=g('title');if(!title){title=(cap.split('\n').find(x=>x.trim())||'').trim();if(title.length>70)title=title.slice(0,67).trim()+'…'}
+    if(!title||!date){bad++;continue}
+    const ch=g('ch').toLowerCase();const pl=[];if(!ch||ch.includes('insta'))pl.push('instagram');if(!ch||ch.includes('face')||ch==='fb')pl.push('facebook');if(!pl.length)pl.push('instagram');
+    const urls=g('links').split(/[\s,;]+/).filter(x=>/^https?:/.test(x));
+    const f=(g('format')||mark).toLowerCase();
+    const format=/carousel/.test(f)?'Carousel':/reel|vid/.test(f)?'Reel':/stor/.test(f)?'Story':(urls.length>1?'Carousel':'Static');
+    const id='p'+stamp+i;
+    const imgs=urls.map(u=>{if(/\.(jpe?g|png|webp|gif|avif)(\?|$)/i.test(u)||u.includes('/art/'))return u;const m=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:[^#]*&)?id=)([\w-]{10,})/);return m?'https://drive.google.com/thumbnail?id='+m[1]+'&sz=w1000':''}).filter(Boolean);
+    const post={id,date,time:normTime(g('time')),format,platforms:pl,title,caption:cap,driveUrls:urls,driveUrl:urls[0]||'',status:S.impStatus||'review',note:'',slides:Math.max(1,urls.length),assetIds:imgs.length===urls.length?imgs:[],imageUrls:[]};
+    await savePost(id,post,{kind:'status',to:S.impStatus||'review',text:'Imported'});n++}
+  S.impMsg='';S.importing=false;toast('Imported '+n+' post'+(n===1?'':'s')+(bad?' ('+bad+' skipped: missing date or caption)':'')+'.');render()}
+function addForm(){
+  return '<div class="ov" data-act="bg"><div class="dlgwrap" style="max-width:520px"><button class="close" data-act="close" aria-label="Close">×</button><div class="dlg" style="grid-template-columns:1fr"><div class="side"><h2>Add post</h2><p class="muted" style="margin:0">It lands as a draft on the calendar and at the top of the grid straight away. Upload the images to preview them in the grid; for a carousel, select every slide in order.</p>'+
+  '<div class="field"><label>Title</label><input id="a_t"></div><div class="row"><div class="field"><label>Date</label><input type="date" id="a_d" value="'+TODAY+'"></div><div class="field"><label>Time</label><input type="time" id="a_h" value="08:00"></div></div>'+
+  '<div class="field"><label>Format</label><select id="a_f"><option>Static</option><option>Carousel</option><option>Reel</option><option>Story</option></select></div>'+
+  '<div class="field"><label>Caption</label><textarea id="a_c" rows="5"></textarea></div><div class="row"><label><input type="checkbox" id="a_i" checked> Instagram</label><label><input type="checkbox" id="a_fb" checked> Facebook</label></div>'+
+  '<div class="field"><label>Artwork links, one per line (one per slide for a carousel)</label><textarea id="a_drv" rows="2" placeholder="https://drive.google.com/…"></textarea></div>'+
+  (S.assets?'<div class="field"><label>Artwork images (optional, one per slide, in order)</label><input type="file" id="a_art" accept="image/*" multiple></div>':'')+
+  '<div class="row"><button class="btn acc" data-act="create">Create draft</button></div></div></div></div></div>';
+}
+function render(){
+  if(S.orderAuto!==S.mode){S.orderAuto=S.mode;S.order=S.mode==='client'?'new':'old'}
+  const a=document.activeElement;const keep=a&&a.id&&['cm','capEd'].includes(a.id)?{id:a.id,s:a.selectionStart}:null;const sy=window.scrollY;
+  if(S.mode==='client'&&S.tab!=='grid'&&S.tab!=='doc'){S.tab='grid';S.sel=null}
+  const v={content,grid:gridTab,doc:docTab,approvals,pipeline,export:exportView,brand,activity}[S.tab]();
+  $('#app').innerHTML=header()+'<main>'+v+'</main>'+(S.adding?addForm():'')+(S.importing?importForm():'')+(S.toast?'<div class="toast" role="status">'+esc(S.toast)+'</div>':'');
+  window.scrollTo(0,sy);if(keep){const el=document.getElementById(keep.id);if(el){el.focus();try{el.setSelectionRange(keep.s,keep.s)}catch(e){}}}
+}
+
+/* ---------- events ---------- */
+document.addEventListener('input',e=>{if(e.target.id==='cm')S.draft=e.target.value});
+document.addEventListener('change',async e=>{
+  const t=e.target,a=t.dataset&&t.dataset.act;if(!a)return;
+  if(a==='filter'){S.filter=t.value;render()}
+  else if(a==='setstatus'){const p=S.posts[t.dataset.id||S.sel];await savePost(p.id,{status:t.value},{kind:'status',to:t.value});if(t.value==='changes'&&!isTeam())toast('Status set. Add a comment below so the team knows what to change.')}
+  else if(a==='exf'){S.exp.from=t.value||S.exp.from;render()}
+  else if(a==='ext'){S.exp.to=t.value||S.exp.to;render()}
+  else if(a==='exs'){S.exp.st[t.dataset.v]=t.checked;render()}
+  else if(a==='upload'&&S.assets&&S.sel){
+    const p=S.posts[S.sel];const ids=(p.assetIds||[]).slice();
+    try{for(const f of t.files){const r=await S.assets.upload(f);ids.push(r.id)}
+      const patch={assetIds:ids,slides:ids.length};if(ids.length>1&&p.format==='Static')patch.format='Carousel';await savePost(p.id,patch,{kind:'status',to:p.status,text:'Artwork uploaded ('+ids.length+' image'+(ids.length>1?'s':'')+')'});toast('Artwork added')}
+    catch(x){toast('Upload failed: '+(x&&x.message||x&&x.code||'refused'))}
+  }
+});
+document.addEventListener('click',async e=>{
+  const el=e.target.closest('[data-act]');if(!el)return;
+  const a=el.dataset.act,v=el.dataset.v;
+  if(['filter','exf','ext','exs','upload','cap'].includes(a))return;
+  if(a==='bg'){if(e.target!==el)return;S.sel=null;S.adding=false;return render()}
+  if(a==='mode'){S.mode=v;try{localStorage.setItem('actyva-room-mode',v)}catch(x){}return render()}
+  if(a==='tab'){S.tab=v;if(v==='doc')S.sel=null;return render()}
+  if(a==='view'){S.view=v;return render()}
+  if(a==='mnav'){S.sel=null;const[y,m]=S.month.split('-').map(Number);const d=new Date(y,m-1+Number(v),1);S.month=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');return render()}
+  if(a==='mtoday'){S.sel=null;S.month=TODAY.slice(0,7);return render()}
+  if(a==='open'){const p=S.posts[v];if(p)S.month=p.date.slice(0,7);S.tab='content';S.sub='calendar';S.sel=v;S.slide=0;S.draft='';render();const d=document.querySelector('.post-detail');if(d)d.scrollIntoView({block:'start'});return}
+  if(a==='pick'){S.sel=v;S.slide=0;S.draft='';S.tools=false;render();if(window.innerWidth<=900){const d=document.querySelector('.post-detail');if(d)d.scrollIntoView({block:'start',behavior:'smooth'})}return}
+  if(a==='sub'){S.sub=v;S.sel=null;return render()}
+  if(a==='mc'){return mcPush(S.posts[S.sel],true)}
+  if(a==='mcs'){if(S.cmc!==S.sel){S.cmc=S.sel;return render()}return mcPush(S.posts[S.sel],false)}
+  if(a==='delask'){S.cdel=S.sel;return render()}
+  if(a==='delno'){S.cdel=null;return render()}
+  if(a==='delyes'){const id=S.sel;if(!id||S.cdel!==id)return;const evs=S.events.filter(x=>x.postId===id);
+    if(S.live){try{await S.db.collection('posts').doc(id).delete();for(const x of evs){if(x.id)await S.db.collection('events').doc(x.id).delete().catch(()=>{})}}catch(x){toast('Could not delete: '+(x&&x.message||'refused'));return}}
+    else{S.events=S.events.filter(x=>x.postId!==id)}
+    delete S.posts[id];S.cdel=null;S.sel=null;toast('Post deleted');return render()}
+  if(a==='slk'){if(!S.cslack){S.cslack=true;return render()}return slackSend()}
+  if(a==='slkx'){S.cslack=false;return render()}
+  if(a==='mcx'){S.cmc=null;return render()}
+  if(a==='ord'){S.order=v;return render()}
+  if(a==='docopen'){S.sel=S.sel===v?null:v;S.slide=0;S.draft='';render();const d=document.querySelector('.post-detail');if(d&&S.sel)d.scrollIntoView({block:'start',behavior:'smooth'});return}
+  if(a==='cf'){S.cf=v;S.sel=null;return render()}
+  if(a==='tools'){S.tools=!S.tools;return render()}
+  if(a==='rmslide'){const p=S.posts[S.sel];const ids=(p.assetIds||[]).slice();ids.splice(Math.min(S.slide,ids.length-1),1);S.slide=0;await savePost(p.id,{assetIds:ids,slides:Math.max(1,ids.length)},{kind:'status',to:p.status,text:'Slide removed'});return}
+  if(a==='savedrive'){const l=document.getElementById('drv').value.split(/[\s,]+/).filter(x=>x);await savePost(S.sel,{driveUrls:l,driveUrl:l[0]||''});toast('Artwork link saved');return}
+  if(a==='clearart'){await savePost(S.sel,{assetIds:[]},{kind:'status',to:S.posts[S.sel].status,text:'Artwork removed'});return}
+  if(a==='close'){S.sel=null;S.adding=false;S.importing=false;return render()}
+  if(a==='slide'){const p=S.posts[S.sel];const n=(p.assetIds||[]).length||p.slides||1;S.slide=(S.slide+Number(v)+n)%n;return render()}
+  if(a==='add'){S.adding=true;return render()}
+  if(a==='import'){S.importing=true;S.impMsg='';return render()}
+  if(a==='importtpl'){const t='date,caption,artwork URL\nNov 5,"Caption goes here","https://drive.google.com/a, https://drive.google.com/b"\nNov 9,"Reel caption here\nREEL",https://drive.google.com/c\n';if(S.dl)S.dl.save({filename:'actyva-import-template.csv',data:t});return}
+  if(a==='importgo'){const pf=document.getElementById('imp_pdf');if(pf&&pf.files.length)return runPdfImport(pf.files[0]);S.impStatus=((document.getElementById('imp_st')||{}).value==='draft')?'draft':'review';const fl=document.getElementById('imp_f');let t=(document.getElementById('imp_t')||{}).value||'';if(fl&&fl.files.length)t=await fl.files[0].text();return runImport(t)}
+  if(a==='approve'){const id=v;await savePost(id,{status:'approved'},{kind:'status',to:'approved'});toast('Approved');return}
+  if(a==='changes'){const t=(document.getElementById('cm')||{}).value||'';if(!t.trim()){toast('Add a comment saying what to change');return}
+    const id=v;await savePost(id,{status:'changes'},{kind:'comment',text:t.trim()});await addEvent({postId:id,kind:'status',to:'changes'});S.draft='';render();return}
+  if(a==='status'){const p=S.posts[S.sel];await savePost(p.id,{status:v},{kind:'status',to:v});return}
+  if(a==='qclear'){S.quote='';const q=document.getElementById('qbar');if(q)q.innerHTML='';return}
+  if(a==='ncomment'){const c=document.querySelector('.post-detail .caption');if(S.cm&&c){try{await S.cm.openComposer({element:c})}catch(x){toast('Commenting is not available here. Use Comment mode in the toolbar.')}}else toast('Commenting is not available here. Use Comment mode in the toolbar.');return}
+  if(a==='qgo'&&S.canWrite===false&&S.cm&&S.range){const f=document.getElementById('qfloat');try{await S.cm.openComposer({range:S.range})}catch(x){toast('Commenting is not available here.')}if(f)f.hidden=true;return}
+  if(a==='qgo'){const c=document.getElementById('cm');const f=document.getElementById('qfloat');if(f)f.hidden=true;if(c){c.scrollIntoView({block:'center',behavior:'smooth'});c.focus()}return}
+  if(a==='mention'){const el=document.getElementById('cm');if(el){const sp=el.value&&!/\s$/.test(el.value)?' ':'';el.value+=sp+'@'+v+' ';S.draft=el.value;el.focus()}return}
+  if(a==='comment'){const t=(document.getElementById('cm')||{}).value||'';if(!t.trim())return;const ev={postId:S.sel,kind:'comment',text:t.trim()};
+    const men=[...new Set((t.match(new RegExp('@('+window.ROOM.tags.join('|')+')\\b','gi'))||[]).map(x=>x.slice(1).toLowerCase()))];if(men.length)ev.mentions=men;if(S.quote&&S.quoteFor===S.sel)ev.quote=S.quote;const ok=await addEvent(ev);if(!ok)return;
+    if(men.length){const pp=S.posts[S.sel]||{};fetch(window.ROOM.api+'notify',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({mentions:men,by:S.mode,postTitle:pp.title||'a post',text:t.trim()})}).then(r=>{if(!r.ok)throw 0;toast('Comment posted. Email sent to '+men.join(', ')+'.')}).catch(()=>toast('Comment saved, but the email could not be sent.'))}
+    S.draft='';S.quote='';render();return}
+  if(a==='savecap'){await savePost(S.sel,{caption:document.getElementById('capEd').value},{kind:'status',to:S.posts[S.sel].status,text:'Caption edited'});toast('Caption saved');return}
+  if(a==='saveurls'){const u=document.getElementById('urls').value.split(/\s*\n\s*/).map(x=>x.trim()).filter(Boolean).slice(0,10);await savePost(S.sel,{imageUrls:u});toast('URLs saved');return}
+  if(a==='savedt'){const d=document.getElementById('dd').value,t=document.getElementById('tt').value;if(!d||!t)return;await savePost(S.sel,{date:d,time:t},{kind:'status',to:S.posts[S.sel].status,text:'Rescheduled to '+d+' '+t});toast('Rescheduled');return}
+  if(a==='create'){const t=document.getElementById('a_t').value.trim();if(!t){toast('Give the post a title');return}
+    const pl=[];if(document.getElementById('a_i').checked)pl.push('instagram');if(document.getElementById('a_fb').checked)pl.push('facebook');if(!pl.length){toast('Pick a channel');return}
+    const id='p'+Date.now().toString(36);
+    const p={id,date:document.getElementById('a_d').value,time:document.getElementById('a_h').value,format:document.getElementById('a_f').value,platforms:pl,title:t,caption:document.getElementById('a_c').value,driveUrls:((document.getElementById('a_drv')||{}).value||'').split(/[\s,]+/).filter(x=>x),driveUrl:(((document.getElementById('a_drv')||{}).value||'').split(/[\s,]+/).filter(x=>x))[0]||'',status:'draft',note:'',slides:1,assetIds:[],imageUrls:[]};
+    const fl=document.getElementById('a_art');if(fl&&fl.files.length&&S.assets){try{for(const f of fl.files){const r=await S.assets.upload(f);p.assetIds.push(r.id)}if(p.assetIds.length>1&&p.format==='Static')p.format='Carousel';p.slides=Math.max(1,p.assetIds.length)}catch(x){toast('Artwork upload failed: '+(x&&x.message||'refused'))}}
+    S.adding=false;await savePost(id,p,{kind:'status',to:'draft',text:'Post created'});S.month=p.date.slice(0,7);S.tab='content';S.sub='calendar';S.sel=id;render();return}
+  if(a==='csv'){const rows=rowsFor();if(!rows.length||!S.dl)return;
+    try{await S.dl.save({filename:'actyva-metricool-bulk-'+S.exp.from+'-to-'+S.exp.to+'.csv',data:csvOf(rows)});toast('CSV ready')}catch(x){if(!x||x.code!=='declined')toast('Download not available here')}return}
+});
+let selT;document.addEventListener('selectionchange',()=>{clearTimeout(selT);selT=setTimeout(selCheck,200)});
+function selCheck(){let f=document.getElementById('qfloat');const s=window.getSelection();const hide=()=>{if(f)f.hidden=true};
+  if(!s||s.isCollapsed||!s.rangeCount||!S.sel)return hide();
+  const rg=s.getRangeAt(0);const cap=document.querySelector('.post-detail .caption');
+  if(!cap||!cap.contains(rg.commonAncestorContainer))return hide();
+  const t=s.toString().trim();if(!t||t.length>300)return hide();
+  S.quote=t;S.quoteFor=S.sel;S.range=rg.cloneRange();const q=document.getElementById('qbar');if(q)q.innerHTML=qbarHtml();
+  if(!f){f=document.createElement('button');f.id='qfloat';f.className='qfloat';f.dataset.act='qgo';f.textContent='Comment on this';f.addEventListener('mousedown',e=>e.preventDefault());document.body.appendChild(f)}
+  const rc=rg.getBoundingClientRect();f.hidden=false;f.style.top=(window.scrollY+rc.bottom+8)+'px';f.style.left=Math.max(8,Math.min(window.scrollX+rc.left,window.innerWidth-150))+'px'}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(S.sel||S.adding)){S.sel=null;S.adding=false;render()}});
+boot();
+})();
+</script>
+
+</body></html>

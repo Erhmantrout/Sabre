@@ -1,0 +1,10 @@
+{
+  "name": "sabre",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-01-01",
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+  "send_email": [{ "name": "EMAIL" }],
+  "d1_databases": [
+    { "binding": "DB", "database_name": "sabre-brand-rooms", "database_id": "PASTE_DATABASE_ID_HERE" }
+  ]
+}
