@@ -308,7 +308,7 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const TODAY=ymd(new Date());
-const S={posts:{},events:[],tab:'content',view:'calendar',month:null,sel:null,mode:'team',live:false,db:null,assets:null,dl:null,user:null,me:null,names:{},slide:0,filter:'all',draft:'',adding:false,exp:{from:TODAY,to:'2026-12-31',st:{approved:true,scheduled:true}},toast:'',canWrite:true};
+const S={posts:{},events:[],tab:'content',view:'calendar',month:null,sel:null,mode:'team',live:false,db:null,assets:null,dl:null,user:null,me:null,names:{},slide:0,filter:'all',draft:'',adding:false,exp:{from:TODAY,to:'2026-12-31',st:{approved:true,scheduled:true}},toast:'',bsel:{},bdel:false,canWrite:true};
 try{const m=localStorage.getItem('kemon-room-mode');if(m)S.mode=m}catch(e){}
 S.month=TODAY.slice(0,7);S.cf='all';S.ed=true;S.sub='calendar';S.tools=false;
 
@@ -465,6 +465,8 @@ function thumbs(p){
   let h='';for(let i=0;i<n;i++){h+=ids[i]?'<div class="th1"><img alt="Slide '+(i+1)+' of '+esc(p.title)+'" src="'+esc(artSrc(ids[i]))+'"></div>':'<div class="th1 empty1"><span>'+(n>1?'Slide '+(i+1):'Artwork')+'<br>to come</span></div>'}
   return '<div class="thr">'+h+'</div><div class="muted" style="font-size:11px;margin-top:4px">'+n+' image'+(n>1?'s':'')+' · '+esc(p.format)+'</div>';
 }
+function bulkBar(l){if(!isTeam()||!l.length)return '';const n=l.filter(p=>S.bsel[p.id]).length;if(!n)return '<p class="muted" style="margin:0 0 8px;font-size:12px">Tick the boxes to select posts, then delete them all at once.</p>';
+  return '<div class="card" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px"><b>'+n+' selected</b>'+(S.bdel?'<span class="muted">Delete '+n+' post'+(n>1?'s':'')+', with their comments and artwork links, for good? Metricool drafts stay and must be removed there.</span><button class="btn bad sm" data-act="bdelyes">Yes, delete '+n+'</button><button class="btn sm" data-act="bdelno">Cancel</button>':'<button class="btn bad sm" data-act="bdelask">Delete selected</button><button class="btn sm" data-act="bclear">Clear selection</button>')+'</div>'}
 function docTab(){
   const cl=S.mode==='client';
   let l=sortPosts();if(cl){l=l.filter(p=>p.status!=='draft');if(S.cf!=='all')l=l.filter(p=>p.status===S.cf)}
@@ -477,8 +479,8 @@ function docTab(){
     const cap=esc(p.caption||'').replace(/(^|\s)(#[A-Za-z]\w*)/g,'$1<span class="hl">$2</span>');
     const opts=(cl?CLIENT_ST:TORD);const canSet=cl?CLIENT_ST.includes(p.status):true;
     const ctl=(cl&&p.status==='review'?'<button class="btn ok sm" data-act="approve" data-v="'+p.id+'">Approve</button> ':'')+(canSet?'<select data-act="setstatus" data-id="'+p.id+'" aria-label="Status">'+opts.map(s=>'<option value="'+s+'"'+(isSel(p,s)?' selected':'')+'>'+ST[s]+'</option>').join('')+'</select>':'');
-    return '<tr'+(p.id===S.sel?' class="cur"':'')+'><td class="dc"><b>'+fmtDate(p.date)+'</b><br><span class="muted">'+fmtTime(p.time)+'</span><br><span class="muted">'+plats(p)+'</span></td><td class="ph">'+thumbs(p)+'</td><td><div class="docname"><b>'+esc(p.title)+'</b> '+badge(p.status)+'</div><div class="caption" style="margin:6px 0 0;max-height:none">'+cap+'</div>'+(linksOf(p).length?'<div class="links" style="margin-top:6px">'+linksOf(p).map((u,i,a)=>'<a class="lnk" href="'+esc(u)+'" target="_blank" rel="noopener">'+(a.length>1?'Slide '+(i+1):'Artwork')+' ↗</a>').join(' · ')+'</div>':'')+'<div class="row" style="margin-top:8px">'+ctl+'<button class="btn sm" data-act="docopen" data-v="'+p.id+'">Comments ('+ev+')</button></div></td></tr>'}).join('');
-  h+=l.length?'<div class="tw"><table class="list doc"><thead><tr><th>Date</th><th>Photo(s)</th><th>Caption</th></tr></thead><tbody>'+rows+'</tbody></table></div>':'<div class="empty">No posts to show yet.</div>';
+    return '<tr'+(p.id===S.sel?' class="cur"':'')+'>'+(cl?'':'<td style="width:28px;vertical-align:top"><input type="checkbox" data-act="bsel" data-v="'+p.id+'" aria-label="Select post"'+(S.bsel[p.id]?' checked':'')+'></td>')+'<td class="dc"><b>'+fmtDate(p.date)+'</b><br><span class="muted">'+fmtTime(p.time)+'</span><br><span class="muted">'+plats(p)+'</span></td><td class="ph">'+thumbs(p)+'</td><td><div class="docname"><b>'+esc(p.title)+'</b> '+badge(p.status)+'</div><div class="caption" style="margin:6px 0 0;max-height:none">'+cap+'</div>'+(linksOf(p).length?'<div class="links" style="margin-top:6px">'+linksOf(p).map((u,i,a)=>'<a class="lnk" href="'+esc(u)+'" target="_blank" rel="noopener">'+(a.length>1?'Slide '+(i+1):'Artwork')+' ↗</a>').join(' · ')+'</div>':'')+'<div class="row" style="margin-top:8px">'+ctl+'<button class="btn sm" data-act="docopen" data-v="'+p.id+'">Comments ('+ev+')</button></div></td></tr>'}).join('');
+  h+=bulkBar(l);h+=l.length?'<div class="tw"><table class="list doc"><thead><tr>'+(cl?'':'<th style="width:28px"><input type="checkbox" data-act="ball" aria-label="Select all"'+(l.length&&l.every(p=>S.bsel[p.id])?' checked':'')+'></th>')+'<th>Date</th><th>Photo(s)</th><th>Caption</th></tr></thead><tbody>'+rows+'</tbody></table></div>':'<div class="empty">No posts to show yet.</div>';
   const cur=S.posts[S.sel];
   if(cur&&l.some(p=>p.id===cur.id))h+='<div style="margin-top:24px">'+detail(cur)+'</div>';
   return h;
@@ -790,6 +792,8 @@ document.addEventListener('input',e=>{if(e.target.id==='cm')S.draft=e.target.val
 document.addEventListener('change',async e=>{
   const t=e.target,a=t.dataset&&t.dataset.act;if(!a)return;
   if(a==='filter'){S.filter=t.value;render()}
+  else if(a==='bsel'){if(t.checked)S.bsel[t.dataset.v]=1;else delete S.bsel[t.dataset.v];S.bdel=false;render()}
+  else if(a==='ball'){S.bsel={};if(t.checked)sortPosts().forEach(p=>S.bsel[p.id]=1);S.bdel=false;render()}
   else if(a==='setstatus'){const p=S.posts[t.dataset.id||S.sel];await savePost(p.id,{status:t.value},{kind:'status',to:t.value});if(t.value==='changes'&&!isTeam())toast('Status set. Add a comment below so the team knows what to change.')}
   else if(a==='exf'){S.exp.from=t.value||S.exp.from;render()}
   else if(a==='ext'){S.exp.to=t.value||S.exp.to;render()}
@@ -804,7 +808,7 @@ document.addEventListener('change',async e=>{
 document.addEventListener('click',async e=>{
   const el=e.target.closest('[data-act]');if(!el)return;
   const a=el.dataset.act,v=el.dataset.v;
-  if(['filter','exf','ext','exs','upload','cap'].includes(a))return;
+  if(['filter','exf','ext','exs','upload','cap','bsel','ball'].includes(a))return;
   if(a==='bg'){if(e.target!==el)return;S.sel=null;S.adding=false;return render()}
   if(a==='mode'){S.mode=v;try{localStorage.setItem('kemon-room-mode',v)}catch(x){}return render()}
   if(a==='tab'){S.tab=v;if(v==='doc')S.sel=null;return render()}
@@ -816,6 +820,15 @@ document.addEventListener('click',async e=>{
   if(a==='sub'){S.sub=v;S.sel=null;return render()}
   if(a==='mc'){return mcPush(S.posts[S.sel],true)}
   if(a==='mcs'){if(S.cmc!==S.sel){S.cmc=S.sel;return render()}return mcPush(S.posts[S.sel],false)}
+  if(a==='bdelask'){S.bdel=true;return render()}
+  if(a==='bdelno'){S.bdel=false;return render()}
+  if(a==='bclear'){S.bsel={};S.bdel=false;return render()}
+  if(a==='bdelyes'){if(!isTeam())return;const ids=Object.keys(S.bsel).filter(id=>S.posts[id]);let done=0;
+    for(const id of ids){const evs=S.events.filter(x=>x.postId===id);
+      if(S.live){try{await S.db.collection('posts').doc(id).delete();for(const x of evs){if(x.id)await S.db.collection('events').doc(x.id).delete().catch(()=>{})}}catch(x){toast('Could not delete some posts: '+(x&&x.message||'refused'));break}}
+      else{S.events=S.events.filter(x=>x.postId!==id)}
+      delete S.posts[id];if(S.sel===id)S.sel=null;done++}
+    S.bsel={};S.bdel=false;toast(done+' post'+(done===1?'':'s')+' deleted');return render()}
   if(a==='delask'){S.cdel=S.sel;return render()}
   if(a==='delno'){S.cdel=null;return render()}
   if(a==='delyes'){const id=S.sel;if(!id||S.cdel!==id)return;const evs=S.events.filter(x=>x.postId===id);
