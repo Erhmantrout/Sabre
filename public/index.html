@@ -229,7 +229,7 @@ table.doc select{border:1px solid var(--ink);background:var(--surface);padding:5
 /* Saves to the Sabre Worker (/api/<room>/...) instead of the Claude artifact runtime. */
 (function(){
   var seg=((location.pathname.split('/')[1]||'hub').toLowerCase().replace(/[^a-z0-9-]/g,''))||'hub';
-  window.ROOM={brand:seg,api:'/api/'+seg+'/',tags:['Ade','Hayley','Stasa']};
+  window.ROOM={brand:seg,api:'/api/'+seg+'/',tags:['Abby','Hayley']};
   try{if(/[?&]client\b/.test(location.search))localStorage.setItem('apm-room-mode','client')}catch(e){}
   async function api(path,opts){
     const url=path==='assets'?'/api/assets':window.ROOM.api+path;

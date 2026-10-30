@@ -234,7 +234,7 @@ table.doc .caption{background:var(--bg);font-size:14px}
 /* Saves to the Sabre Worker (/api/<room>/...) instead of the Claude artifact runtime. */
 (function(){
   var seg=((location.pathname.split('/')[1]||'hub').toLowerCase().replace(/[^a-z0-9-]/g,''))||'hub';
-  window.ROOM={brand:seg,api:'/api/'+seg+'/',tags:['Ade','Hayley','Stasa']};
+  window.ROOM={brand:seg,api:'/api/'+seg+'/',tags:['Abby','Hayley']};
   try{if(/[?&]client\b/.test(location.search))localStorage.setItem('apm-room-mode','client')}catch(e){}
   async function api(path,opts){
     const url=path==='assets'?'/api/assets':window.ROOM.api+path;
@@ -594,7 +594,7 @@ function detail(p){
     act+=S.cdel===p.id?'<span class="muted">Delete this post, its comments and artwork links for good?'+(p.metricool?' The Metricool draft stays and must be removed there.':'')+'</span><button class="btn bad" data-act="delyes">Yes, delete</button><button class="btn" data-act="delno">Cancel</button>':'<button class="btn bad" data-act="delask">Delete post</button>';
   }
   const tools=team&&S.tools?'<div class="card tools"><div class="field"><label>Caption</label><textarea id="capEd" rows="7">'+esc(p.caption)+'</textarea><div class="row" style="margin-top:6px"><button class="btn sm" data-act="savecap">Save caption</button></div></div>'+
-   '<div class="field"><label>Artwork links, one per line (one per slide for a carousel, or a folder link)</label><textarea id="drv" rows="3" placeholder="https://drive.google.com/…">'+esc(linksOf(p).join('\n'))+'</textarea><div class="row" style="margin-top:6px"><button class="btn sm" data-act="savedrive">Save link</button></div></div>'+
+   '<div class="field"><label>Artwork links, one per line (one per slide for a carousel, or a folder link)</label><textarea id="drv" rows="3" placeholder="https://drive.google.com/…">'+esc(linksOf(p).join('\n'))+'</textarea><div class="row" style="margin-top:6px"><button type="button" class="btn sm" data-act="morelinks" data-v="drv">+ Add another link</button><button class="btn sm" data-act="savedrive">Save links</button></div></div>'+
    '<div class="field"><label>Public image URLs for Metricool, one per line in slide order (e.g. Cloudinary)</label><textarea id="urls" rows="4" placeholder="https://res.cloudinary.com/…">'+esc((p.imageUrls||[]).join('\n'))+'</textarea><div class="row" style="margin-top:6px"><button class="btn sm" data-act="saveurls">Save URLs</button></div></div>'+
    '<div class="field"><label>Date and time</label><div class="row"><input type="date" id="dd" value="'+p.date+'" style="width:auto"><input type="time" id="tt" value="'+p.time+'" style="width:auto"><button class="btn sm" data-act="savedt">Reschedule</button></div></div>'+
    (S.assets?'<div class="field"><label>Artwork images (adds to the end, slide order = upload order)</label><input type="file" accept="image/*" multiple data-act="upload">'+(ids.length?'<div class="row" style="margin-top:6px"><button class="btn sm bad" data-act="rmslide">Remove slide '+(Math.min(S.slide,ids.length-1)+1)+'</button><button class="btn sm bad" data-act="clearart">Remove all</button></div>':'')+'</div>':'<p class="muted">Artwork upload is available when this page is opened inside Claude.</p>')+'</div>':'';
@@ -774,7 +774,7 @@ function addForm(){
   '<div class="field"><label>Title</label><input id="a_t"></div><div class="row"><div class="field"><label>Date</label><input type="date" id="a_d" value="'+TODAY+'"></div><div class="field"><label>Time</label><input type="time" id="a_h" value="08:00"></div></div>'+
   '<div class="field"><label>Format</label><select id="a_f"><option>Static</option><option>Carousel</option><option>Reel</option><option>Story</option></select></div>'+
   '<div class="field"><label>Caption</label><textarea id="a_c" rows="5"></textarea></div><div class="row"><label><input type="checkbox" id="a_i" checked> Instagram</label><label><input type="checkbox" id="a_fb" checked> Facebook</label></div>'+
-  '<div class="field"><label>Artwork links, one per line (one per slide for a carousel)</label><textarea id="a_drv" rows="2" placeholder="https://drive.google.com/…"></textarea></div>'+
+  '<div class="field"><label>Artwork links: one per line, add a line for each slide of a carousel</label><textarea id="a_drv" rows="4" placeholder="Slide 1 link&#10;Slide 2 link&#10;Slide 3 link"></textarea><div class="row" style="margin-top:6px"><button type="button" class="btn sm" data-act="morelinks" data-v="a_drv">+ Add another link</button></div></div>'+
   (S.assets?'<div class="field"><label>Artwork images (optional, one per slide, in order)</label><input type="file" id="a_art" accept="image/*" multiple></div>':'')+
   '<div class="row"><button class="btn acc" data-act="create">Create draft</button></div></div></div></div></div>';
 }
@@ -843,6 +843,7 @@ document.addEventListener('click',async e=>{
   if(a==='cf'){S.cf=v;S.sel=null;return render()}
   if(a==='tools'){S.tools=!S.tools;return render()}
   if(a==='rmslide'){const p=S.posts[S.sel];const ids=(p.assetIds||[]).slice();ids.splice(Math.min(S.slide,ids.length-1),1);S.slide=0;await savePost(p.id,{assetIds:ids,slides:Math.max(1,ids.length)},{kind:'status',to:p.status,text:'Slide removed'});return}
+  if(a==='morelinks'){const t=document.getElementById(v);if(t){t.value=t.value.replace(/\s+$/,'')+(t.value.trim()?'\n':'');t.focus()}return}
   if(a==='savedrive'){const l=document.getElementById('drv').value.split(/[\s,]+/).filter(x=>x);await savePost(S.sel,{driveUrls:l,driveUrl:l[0]||''});toast('Artwork link saved');return}
   if(a==='clearart'){await savePost(S.sel,{assetIds:[]},{kind:'status',to:S.posts[S.sel].status,text:'Artwork removed'});return}
   if(a==='close'){S.sel=null;S.adding=false;S.importing=false;return render()}

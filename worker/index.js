@@ -14,9 +14,8 @@ const SORTED_BY_TIME = ['events', 'audit'];
 
 // Only these people can be tagged. Emails go to the tagged person only.
 const PEOPLE = {
-  ade: { name: 'Ade', email: 'ade@sixunderground.net.au' },
+  abby: { name: 'Abby', email: 'abby@sixunderground.net.au' },
   hayley: { name: 'Hayley', email: 'hayley@sixunderground.net.au' },
-  stasa: { name: 'Stasa', email: 'stasa@sixunderground.net.au' },
 };
 
 let ready = false;
