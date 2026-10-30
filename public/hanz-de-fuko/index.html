@@ -402,7 +402,8 @@ function fmtDate(d){const x=new Date(d+'T12:00:00');return x.toLocaleDateString(
 function fmtTime(t){const[h,m]=t.split(':').map(Number);return(h%12||12)+':'+String(m).padStart(2,'0')+(h<12?' am':' pm')}
 function plats(p){return p.platforms.map(x=>x==='instagram'?'IG':x==='facebook'?'FB':x==='tiktok'?'TT':x).join(' + ')}
 const linksOf=p=>[].concat(p.driveUrls||[],p.driveUrl||[]).join(' ').split(/[\s,]+/).filter(x=>/^https?:\/\//.test(x)).filter((x,i,a)=>a.indexOf(x)===i);
-const mediaOf=p=>(p.imageUrls&&p.imageUrls.length)?p.imageUrls:linksOf(p);
+const driveDirect=u=>{const m=String(u).match(/drive\.google\.com\/file\/d\/([\w-]{10,})/);return m?'https://drive.google.com/thumbnail?id='+m[1]+'&sz=w1000':u};
+const mediaOf=p=>{if(p.imageUrls&&p.imageUrls.length)return p.imageUrls;const a=(p.assetIds||[]).map(id=>new URL(artSrc(id),location.origin).href);if(a.length)return a;return linksOf(p).map(driveDirect)};
 function ready(p){const m=mediaOf(p);const n=Math.max(p.slides||1,(p.assetIds||[]).length,m.length);const when=new Date(p.date+'T'+p.time+':00');
   return [['Approved',['approved','scheduled'].includes(p.status)],['Caption written',!!(p.caption||'').trim()],['Channel chosen',p.platforms.length>0],['Artwork link for every slide ('+m.length+' of '+n+')',m.length>=n&&m.length>0],['Scheduled date still in the future',when>new Date()]]}
 const MC={server:'Metricool_Social_Media_Management',blog:'7005212',label:'hanzdefuko_ausnz',tz:'Australia/Sydney'};
@@ -410,12 +411,21 @@ function sydIso(d,t){const want=d+'T'+t+':00';const f=new Intl.DateTimeFormat('e
   for(const off of [11,10]){const inst=Date.parse(want+'Z')-off*3600000;const q={};f.formatToParts(new Date(inst)).forEach(x=>q[x.type]=x.value);if(q.year+'-'+q.month+'-'+q.day+'T'+q.hour+':'+q.minute+':'+q.second===want)return want+'+'+String(off).padStart(2,'0')+':00'}
   return want+'+11:00'}
 function mcBlock(p){
-  if(!S.mcp)return '<div class="card"><span class="label">Metricool</span><p class="muted" style="margin:6px 0 0">Sending to Metricool works when this page is opened inside Claude by someone who has Metricool connected.</p></div>';
   if(p.metricool){const m=p.metricool;return '<div class="card"><span class="label">Metricool</span><p style="margin:6px 0 0"><b style="color:var(--s-approved)">✓ Sent as '+(m.draft?'a draft':'scheduled')+'</b> to '+esc(MC.label)+' · '+new Date(m.at).toLocaleString('en-AU',{day:'numeric',month:'short',hour:'numeric',minute:'2-digit'})+(m.url?' · <a href="'+esc(m.url)+'" target="_blank" rel="noopener">Open in Metricool ↗</a>':'')+'</p></div>'}
   const rd=ready(p);const ok=rd.slice(1).every(r=>r[1]);const appr=rd[0][1];const okd=[1,2,4].every(i=>rd[i][1]);
   const confirm=S.cmc===p.id;
   return '<div class="card"><span class="label">Send to Metricool · '+esc(MC.label)+'</span><p class="muted" style="margin:6px 0 10px">'+(appr?(ok?'Ready. '+fmtDate(p.date)+' '+fmtTime(p.time)+' Sydney time, '+plats(p)+', '+mediaOf(p).length+' media link'+(mediaOf(p).length>1?'s':'')+'.':okd?'No artwork linked yet. You can send a draft and add the pictures inside Metricool. Scheduling needs the artwork linked.':'Fix the red items above first.'):'Set the status to Approved first.')+'</p><div class="row"><button class="btn" data-act="mc"'+(appr&&okd&&!S.pushing?'':' disabled')+'>Send as draft</button><button class="btn '+(confirm?'bad':'pri')+'" data-act="mcs"'+(appr&&ok&&!S.pushing?'':' disabled')+'>'+(confirm?'Confirm: schedule to publish':'Schedule to publish')+'</button>'+(confirm?'<button class="btn sm" data-act="mcx">Cancel</button>':'')+'</div>'+(confirm?'<p class="muted" style="margin:8px 0 0">This will publish to the live Hanz de Fuko accounts at the time above.</p>':'')+'</div>'}
+async function mcPushHook(p,draft){
+  S.pushing=true;S.cmc=null;render();
+  try{const r=await fetch((window.ROOM&&window.ROOM.api||'/api/')+'metricool',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({brand:MC.label,blogId:MC.blog,postId:p.id,title:p.title,caption:p.caption,date:p.date,time:p.time,timezone:MC.tz,dateTime:sydIso(p.date,p.time),platforms:p.platforms,format:p.format,media:mediaOf(p),draft:!!draft})});
+    if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(r.status===503?'not connected yet. Ask Claude to finish the Make link.':(j.error||'could not send'))}
+    await savePost(p.id,{metricool:{draft:!!draft,at:Date.now(),url:''},status:draft?p.status:'scheduled'},{kind:'status',to:draft?p.status:'scheduled',text:draft?'Sent to Metricool as a draft':'Scheduled in Metricool'});
+    toast(draft?'Sent to Metricool as a draft':'Scheduled in Metricool')
+  }catch(e){toast('Metricool: '+((e&&e.message)||'could not send'))}
+  S.pushing=false;render();
+}
 async function mcPush(p,draft){
+  if(!S.mcp)return mcPushHook(p,draft);
   S.pushing=true;S.cmc=null;render();
   const t=p.platforms.map(n=>({network:n}));const info={autoPublish:true,descendants:[],draft:!!draft,firstCommentText:'',hasNotReadNotes:false,media:mediaOf(p),mediaAltText:[],providers:t,publicationDate:{dateTime:p.date+'T'+p.time+':00',timezone:MC.tz},shortener:false,smartLinkData:{ids:[]},text:p.caption};
   if(p.platforms.includes('facebook'))info.facebookData={type:'POST'};

@@ -28,6 +28,21 @@ async function setup(db) {
   ready = true;
 }
 
+async function metricool(req, env) {
+  if (!env.METRICOOL_WEBHOOK_URL) return json({ error: 'not set up yet' }, 503);
+  const b = await req.json();
+  const out = {
+    brand: String(b.brand || '').slice(0, 120), blogId: String(b.blogId || ''), postId: String(b.postId || ''),
+    title: String(b.title || '').slice(0, 200), caption: String(b.caption || '').slice(0, 5000),
+    date: String(b.date || ''), time: String(b.time || ''), timezone: String(b.timezone || ''), dateTime: String(b.dateTime || ''),
+    platforms: Array.isArray(b.platforms) ? b.platforms.slice(0, 6).map(String) : [], format: String(b.format || ''),
+    media: Array.isArray(b.media) ? b.media.slice(0, 10).map(String) : [], draft: !!b.draft,
+  };
+  const r = await fetch(env.METRICOOL_WEBHOOK_URL, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(out) });
+  if (!r.ok) return json({ error: 'Make answered ' + r.status }, 502);
+  return json({ ok: true });
+}
+
 async function notify(req, env, scope) {
   const b = await req.json();
   const who = [...new Set((b.mentions || []).map(m => String(m).toLowerCase()))].filter(m => PEOPLE[m]).slice(0, 6);
@@ -94,6 +109,7 @@ export default {
       const coll = parts[2];
 
       if (req.method === 'POST' && coll === 'notify') return await notify(req, env, scope);
+      if (req.method === 'POST' && coll === 'metricool') return await metricool(req, env);
       if (!COLLS.includes(coll)) return json({ error: 'not found' }, 404);
       const id = parts[3] ? decodeURIComponent(parts[3]) : null;
 
