@@ -390,7 +390,7 @@ function approvals(){
 }
 function directory(){
   const q=S.q.trim().toLowerCase();const l=list('links');
-  let h='<div class="bar"><div class="grp"><h2>Directory</h2></div><div class="grp"><input type="search" class="srch" data-act="q" placeholder="Search links" value="'+esc(S.q)+'" aria-label="Search links">'+'<button class="btn acc sm" data-act="new" data-v="links">+ Add link</button>'+'</div></div>'+
+  let h='<div class="bar"><div class="grp"><h2>Directory</h2></div><div class="grp"><input type="search" class="srch" data-act="q" placeholder="Search files and links" value="'+esc(S.q)+'" aria-label="Search files and links">'+'<button class="btn acc sm" data-act="new" data-v="links">+ Upload file or add link</button>'+'</div></div>'+
    '<div class="row" style="margin-bottom:14px">'+[['all','All']].concat(LCATS.map(c=>[c,c])).map(x=>'<button class="chipb" data-act="chip" data-v="'+esc(x[0])+'" aria-pressed="'+(S.chip===x[0])+'">'+esc(x[1])+'</button>').join('')+'</div>';
   let any=false;
   LCATS.forEach(cat=>{if(S.chip!=='all'&&S.chip!==cat)return;const items=l.filter(x=>x.cat===cat&&(!q||(x.title+' '+x.desc+' '+x.platform).toLowerCase().includes(q)));
@@ -419,7 +419,7 @@ function access(){
 }
 const FORMS={
  tasks:{label:'task',f:[['title','Task','text'],['detail','Details','area'],['cat','Category','sel',CATS],['status','Status','sel',TS],['owner','Owner','text'],['due','Due date','date'],['urls','Links (one per line: Canva, Drive, Docs…)','area'],['files','Files','files']]},
- links:{label:'link',f:[['title','Title','text'],['desc','What it is','text'],['cat','Section','sel',LCATS],['platform','Platform (Drive, Canva…)','text'],['url','URL (leave empty for a login reference)','text'],['files','Or upload files: PDF, Word, Excel or images, up to 1 MB each','files'],['vault','This is a login reference (no password here)','chk']]},
+ links:{label:'file or link',f:[['title','Title','text'],['desc','What it is','text'],['cat','Section','sel',LCATS],['platform','Platform (Drive, Canva…)','text'],['url','Link (Drive, Canva, Dropbox… leave empty for a file or login reference)','text'],['files','Upload files: PDF, Word, Excel or images, up to 1 MB each','files'],['vault','This is a login reference (no password here)','chk']]},
  people:{label:'person',f:[['name','Name','text'],['title','Company','text'],['org','Team or client','sel',['Team','Client']],['role','Role','sel',ROLES],['scope','Covers','text']]},
  approvals:{label:'approval request',f:[['title','What needs a decision','text'],['detail','Details','area'],['due','Needed by','date'],['status','Status','sel',APS]]}
 };
