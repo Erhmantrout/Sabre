@@ -274,8 +274,13 @@ table.doc select{border:1px solid var(--ink);background:var(--surface);padding:5
     return d.split(',')[1];
   }
   const assets={upload:async function(file){
-    const data=await shrink(file);
-    const r=await api('assets',{method:'POST',body:JSON.stringify({data,type:'image/jpeg'})});
+    let data,type=file.type||'application/octet-stream';
+    if(/^image\/(png|jpeg|webp|gif)$/.test(type)){data=await shrink(file);type='image/jpeg'}
+    else{
+      if(file.size>1000000)throw new Error('too big');
+      data=await new Promise(function(ok,bad){const r=new FileReader();r.onload=function(){ok(String(r.result).split(',')[1])};r.onerror=bad;r.readAsDataURL(file)});
+    }
+    const r=await api('assets',{method:'POST',body:JSON.stringify({data,type})});
     return {id:r.id};
   }};
   const dl={save:async function(o){
@@ -390,8 +395,10 @@ function directory(){
   let any=false;
   LCATS.forEach(cat=>{if(S.chip!=='all'&&S.chip!==cat)return;const items=l.filter(x=>x.cat===cat&&(!q||(x.title+' '+x.desc+' '+x.platform).toLowerCase().includes(q)));
     if(!items.length){if(cat==='Canva'&&!q){any=true;h+='<div class="block"><div class="label" style="margin-bottom:12px">Canva · 0</div><div class="empty">No Canva links yet. '+(isTeam()?'<button class="btn sm" data-act="new" data-v="links" data-pre="canva">+ Add Canva link</button>':'')+'</div></div>';return}if(cat==='Master logins'&&S.chip==='Master logins'){any=true;h+='<div class="block"><div class="warn">No logins listed yet. Add one entry per account saying <b>where the login lives</b> (for example the 1Password vault) and who can use it. Never type the password itself into this page.</div></div>'}return}
-    any=true;h+='<div class="block"><div class="label" style="margin-bottom:12px">'+esc(cat)+' · '+items.length+(cat==='Canva'&&isTeam()?' <button class="lnk" data-act="new" data-v="links" data-pre="canva">+ Add</button>':'')+'</div><div class="grid3">'+items.map(x=>{const inner='<span class="ptag'+(x.vault?' vault':'')+'">'+esc(x.platform)+'</span><strong>'+esc(x.title)+'</strong><span class="sub">'+esc(x.desc)+'</span>';
-      return (x.url&&!x.vault?'<a class="rcard" href="'+esc(x.url)+'" target="_blank" rel="noopener">'+inner+'</a>':'<div class="rcard">'+inner+'</div>')+(isTeam()?'<button class="lnk ed" data-act="edit" data-c="links" data-v="'+x.id+'">Edit</button>':'')}).join('')+'</div></div>'});
+    any=true;h+='<div class="block"><div class="label" style="margin-bottom:12px">'+esc(cat)+' · '+items.length+(cat==='Canva'&&isTeam()?' <button class="lnk" data-act="new" data-v="links" data-pre="canva">+ Add</button>':'')+'</div><div class="grid3">'+items.map(x=>{const fl=x.files||[];const hasF=fl.length>0;const ttl=(x.url&&!x.vault&&hasF)?'<strong><a href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(x.title)+'</a></strong>':'<strong>'+esc(x.title)+'</strong>';
+      const inner='<span class="ptag'+(x.vault?' vault':'')+'">'+esc(x.platform||(hasF?'File':''))+'</span>'+ttl+'<span class="sub">'+esc(x.desc)+'</span>';
+      const fh=hasF?'<div class="atts">'+fl.map(f=>'<a class="atc" href="/_blob/'+esc(f.id)+'" target="_blank" rel="noopener">'+esc(f.name)+'</a>').join('')+'</div>':'';
+      return (x.url&&!x.vault&&!hasF?'<a class="rcard" href="'+esc(x.url)+'" target="_blank" rel="noopener">'+inner+'</a>':'<div class="rcard">'+inner+fh+'</div>')+(isTeam()?'<button class="lnk ed" data-act="edit" data-c="links" data-v="'+x.id+'">Edit</button>':'')}).join('')+'</div></div>'});
   return h+(any?'':'<div class="empty">No links match.</div>');
 }
 function brand(){
@@ -412,7 +419,7 @@ function access(){
 }
 const FORMS={
  tasks:{label:'task',f:[['title','Task','text'],['detail','Details','area'],['cat','Category','sel',CATS],['status','Status','sel',TS],['owner','Owner','text'],['due','Due date','date'],['urls','Links (one per line: Canva, Drive, Docs…)','area'],['files','Files','files']]},
- links:{label:'link',f:[['title','Title','text'],['desc','What it is','text'],['cat','Section','sel',LCATS],['platform','Platform (Drive, Canva…)','text'],['url','URL (leave empty for a login reference)','text'],['vault','This is a login reference (no password here)','chk']]},
+ links:{label:'link',f:[['title','Title','text'],['desc','What it is','text'],['cat','Section','sel',LCATS],['platform','Platform (Drive, Canva…)','text'],['url','URL (leave empty for a login reference)','text'],['files','Or upload files: PDF, Word, Excel or images, up to 1 MB each','files'],['vault','This is a login reference (no password here)','chk']]},
  people:{label:'person',f:[['name','Name','text'],['title','Company','text'],['org','Team or client','sel',['Team','Client']],['role','Role','sel',ROLES],['scope','Covers','text']]},
  approvals:{label:'approval request',f:[['title','What needs a decision','text'],['detail','Details','area'],['due','Needed by','date'],['status','Status','sel',APS]]}
 };
@@ -438,7 +445,7 @@ function render(){
   if(kid){const el=kid==='q'?document.querySelector('[data-act=q]'):document.getElementById(kid);if(el){el.focus();try{el.setSelectionRange(ks,ks)}catch(e){}}}
 }
 document.addEventListener('input',e=>{if(e.target.dataset&&e.target.dataset.act==='q'){S.q=e.target.value;render()}});
-document.addEventListener('change',async e=>{const t=e.target;if(t.dataset&&t.dataset.act==='upl'&&S.assets&&S.modal){const m=S.modal,fs=[...t.files];grab();m.busy=true;render();for(const f of fs){try{const u=await S.assets.upload(f);m.files.push({id:u.id,name:f.name})}catch(x){toast('Could not upload '+f.name)}}m.busy=false;render();return}
+document.addEventListener('change',async e=>{const t=e.target;if(t.dataset&&t.dataset.act==='upl'&&S.assets&&S.modal){const m=S.modal,fs=[...t.files];grab();m.busy=true;render();for(const f of fs){try{const u=await S.assets.upload(f);m.files.push({id:u.id,name:f.name})}catch(x){toast(x&&x.message==='too big'?f.name+' is over 1 MB. Use a Drive or Dropbox link instead.':'Could not upload '+f.name)}}m.busy=false;render();return}
   if(t.dataset&&t.dataset.act==='apst'){const x=S.data.approvals[t.dataset.v];if(x){await put('approvals',x.id,Object.assign({},x,{status:t.value}),'set "'+x.title+'" to '+t.value)}}});
 document.addEventListener('click',async e=>{
   if(e.target.closest('a'))return;const el=e.target.closest('[data-act]');if(!el)return;const a=el.dataset.act,v=el.dataset.v;

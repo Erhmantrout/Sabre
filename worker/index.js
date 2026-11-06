@@ -19,6 +19,9 @@ const PEOPLE = {
 };
 
 let ready = false;
+const SAFE_TYPE = /^(image\/(png|jpeg|webp|gif)|application\/pdf|text\/(plain|csv)|application\/(msword|vnd\.ms-excel|vnd\.ms-powerpoint|vnd\.openxmlformats-officedocument\.[a-z.]+))$/;
+const safeType = t => (SAFE_TYPE.test(String(t || '')) ? String(t) : 'application/octet-stream');
+
 async function setup(db) {
   if (ready) return;
   await db.batch([
@@ -85,7 +88,7 @@ export default {
         const row = await env.DB.prepare('SELECT type, data FROM assets WHERE id = ?').bind(id).first();
         if (!row) return new Response('Not found', { status: 404 });
         const bin = Uint8Array.from(atob(row.data), c => c.charCodeAt(0));
-        return new Response(bin, { headers: { 'content-type': row.type || 'image/jpeg', 'cache-control': 'public, max-age=31536000, immutable' } });
+        return new Response(bin, { headers: { 'content-type': row.type || 'image/jpeg', 'x-content-type-options': 'nosniff', 'cache-control': 'public, max-age=31536000, immutable' } });
       } catch (e) { return new Response('Error', { status: 500 }); }
     }
 
@@ -100,7 +103,7 @@ export default {
         const data = String(body.data || '');
         if (!data || data.length > 1500000) return json({ error: 'image too large' }, 413);
         const id = 'a' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
-        await env.DB.prepare('INSERT INTO assets (id, type, data, at) VALUES (?1, ?2, ?3, ?4)').bind(id, String(body.type || 'image/jpeg').slice(0, 40), data, Date.now()).run();
+        await env.DB.prepare('INSERT INTO assets (id, type, data, at) VALUES (?1, ?2, ?3, ?4)').bind(id, safeType(body.type), data, Date.now()).run();
         return json({ id });
       }
 
