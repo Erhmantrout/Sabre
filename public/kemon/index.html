@@ -296,10 +296,10 @@ table.doc .caption{background:var(--bg);font-size:14px}
 <script>
 (function(){
 const DEMO=/*POSTS*/[];
-const ST={draft:'Pending',review:'Pending',changes:'Changes requested',approved:'Approved',scheduled:'Scheduled',published:'Published'};
+const ST={draft:'Draft',review:'Pending',changes:'Changes requested',approved:'Approved',scheduled:'Scheduled',published:'Published'};
 const ORDER=['draft','review','changes','approved','scheduled','published'];
-const TORD=['draft','changes','approved','scheduled','published'];
-const isSel=(p,s)=>p.status===s||(s==='draft'&&p.status==='review');
+const TORD=['draft','review','changes','approved','scheduled','published'];
+const isSel=(p,s)=>p.status===s;
 const TILE=['t1','t2','t3','t4','t5'];
 const FMT={Static:0,Carousel:1,Reel:3,Story:4,TikTok:2};
 const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -476,7 +476,7 @@ function thumbs(p){
   return '<div class="thr">'+h+'</div><div class="muted" style="font-size:11px;margin-top:4px">'+n+' image'+(n>1?'s':'')+' · '+esc(p.format)+'</div>';
 }
 function bulkBar(l){if(!isTeam()||!l.length)return '';const n=l.filter(p=>S.bsel[p.id]).length;if(!n)return '<p class="muted" style="margin:0 0 8px;font-size:12px">Tick the boxes to select posts, then delete them all at once.</p>';
-  return '<div class="card" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px"><b>'+n+' selected</b>'+(S.bdel?'<span class="muted">Delete '+n+' post'+(n>1?'s':'')+', with their comments and artwork links, for good? Metricool drafts stay and must be removed there.</span><button class="btn bad sm" data-act="bdelyes">Yes, delete '+n+'</button><button class="btn sm" data-act="bdelno">Cancel</button>':'<button class="btn bad sm" data-act="bdelask">Delete selected</button><button class="btn sm" data-act="bclear">Clear selection</button>')+'</div>'}
+  return '<div class="card" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px"><b>'+n+' selected</b>'+(S.bdel?'<span class="muted">Delete '+n+' post'+(n>1?'s':'')+', with their comments and artwork links, for good? Metricool drafts stay and must be removed there.</span><button class="btn bad sm" data-act="bdelyes">Yes, delete '+n+'</button><button class="btn sm" data-act="bdelno">Cancel</button>':'<button class="btn pri sm" data-act="bsend">Send to client</button><button class="btn bad sm" data-act="bdelask">Delete selected</button><button class="btn sm" data-act="bclear">Clear selection</button>')+'</div>'}
 function docTab(){
   const cl=S.mode==='client';
   let l=sortPosts();if(cl){l=l.filter(p=>p.status!=='draft');if(S.cf!=='all')l=l.filter(p=>p.status===S.cf)}
@@ -787,7 +787,8 @@ function addForm(){
   '<div class="field"><label>Caption</label><textarea id="a_c" rows="5"></textarea></div><div class="row"><label><input type="checkbox" id="a_i" checked> Instagram</label><label><input type="checkbox" id="a_fb" checked> Facebook</label></div>'+
   (S.assets?'<div class="field"><label>Upload artwork: PNG, JPG or WebP (pick every slide at once, in order)</label><input type="file" id="a_art" accept="image/png,image/jpeg,image/webp,image/*" multiple><div id="a_prev" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"></div></div>':'')+
   '<div class="field"><label>Or paste artwork links: one per line, add a line for each slide of a carousel</label><textarea id="a_drv" rows="4" placeholder="Slide 1 link&#10;Slide 2 link&#10;Slide 3 link"></textarea><div class="row" style="margin-top:6px"><button type="button" class="btn sm" data-act="morelinks" data-v="a_drv">+ Add another link</button></div></div>'+
-  '<div class="row"><button class="btn acc" data-act="create">Create draft</button></div></div></div></div></div>';
+  '<div class="field"><label>Who can see it</label><select id="a_st"><option value="review">Pending: the client can see it and approve</option><option value="draft">Draft: only the team sees it</option></select></div>'+
+  '<div class="row"><button class="btn acc" data-act="create">Add post</button></div></div></div></div></div>';
 }
 function render(){
   if(S.orderAuto!==S.mode){S.orderAuto=S.mode;S.order=S.mode==='client'?'new':'old'}
@@ -831,6 +832,7 @@ document.addEventListener('click',async e=>{
   if(a==='sub'){S.sub=v;S.sel=null;return render()}
   if(a==='mc'){return mcPush(S.posts[S.sel],true)}
   if(a==='mcs'){if(S.cmc!==S.sel){S.cmc=S.sel;return render()}return mcPush(S.posts[S.sel],false)}
+  if(a==='bsend'){if(!isTeam())return;const ids=Object.keys(S.bsel).filter(id=>S.posts[id]&&S.posts[id].status==='draft');for(const id of ids)await savePost(id,{status:'review'},{kind:'status',to:'review',text:'Sent to the client for review'});S.bsel={};toast(ids.length+' post'+(ids.length===1?'':'s')+' sent to the client');return render()}
   if(a==='bdelask'){S.bdel=true;return render()}
   if(a==='bdelno'){S.bdel=false;return render()}
   if(a==='bclear'){S.bsel={};S.bdel=false;return render()}
@@ -885,9 +887,9 @@ document.addEventListener('click',async e=>{
   if(a==='create'){const t=document.getElementById('a_t').value.trim();if(!t){toast('Give the post a title');return}
     const pl=[];if(document.getElementById('a_i').checked)pl.push('instagram');if(document.getElementById('a_fb').checked)pl.push('facebook');if(!pl.length){toast('Pick a channel');return}
     const id='p'+Date.now().toString(36);
-    const p={id,date:document.getElementById('a_d').value,time:document.getElementById('a_h').value,format:document.getElementById('a_f').value,platforms:pl,title:t,caption:document.getElementById('a_c').value,driveUrls:((document.getElementById('a_drv')||{}).value||'').split(/[\s,]+/).filter(x=>x),driveUrl:(((document.getElementById('a_drv')||{}).value||'').split(/[\s,]+/).filter(x=>x))[0]||'',status:'draft',note:'',slides:1,assetIds:[],imageUrls:[]};
+    const p={id,date:document.getElementById('a_d').value,time:document.getElementById('a_h').value,format:document.getElementById('a_f').value,platforms:pl,title:t,caption:document.getElementById('a_c').value,driveUrls:((document.getElementById('a_drv')||{}).value||'').split(/[\s,]+/).filter(x=>x),driveUrl:(((document.getElementById('a_drv')||{}).value||'').split(/[\s,]+/).filter(x=>x))[0]||'',status:((document.getElementById('a_st')||{}).value==='draft'?'draft':'review'),note:'',slides:1,assetIds:[],imageUrls:[]};
     const fl=document.getElementById('a_art');if(fl&&fl.files.length&&S.assets){try{for(const f of fl.files){const r=await S.assets.upload(f);p.assetIds.push(r.id)}if(p.assetIds.length>1&&p.format==='Static')p.format='Carousel';p.slides=Math.max(1,p.assetIds.length)}catch(x){toast('Artwork upload failed: '+(x&&x.message||'refused'))}}
-    S.adding=false;await savePost(id,p,{kind:'status',to:'draft',text:'Post created'});S.month=p.date.slice(0,7);S.tab='content';S.sub='calendar';S.sel=id;render();return}
+    S.adding=false;await savePost(id,p,{kind:'status',to:p.status,text:'Post created'});S.month=p.date.slice(0,7);S.tab='content';S.sub='calendar';S.sel=id;render();return}
   if(a==='csv'){const rows=rowsFor();if(!rows.length||!S.dl)return;
     try{await S.dl.save({filename:'kemon-metricool-bulk-'+S.exp.from+'-to-'+S.exp.to+'.csv',data:csvOf(rows)});toast('CSV ready')}catch(x){if(!x||x.code!=='declined')toast('Download not available here')}return}
 });
